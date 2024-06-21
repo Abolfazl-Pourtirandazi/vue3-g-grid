@@ -1,0 +1,36 @@
+@import "@mdi/font/css/materialdesignicons.css";
+
+:root {
+  --ggrid-background-color: 255, 255, 255; //#FFF
+  --ggrid-active-color: 242, 242, 242; //#F2F2F2
+
+  --ggrid-font-size: 14px;
+
+  /* Column */
+  --ggrid-column-background-color: 255, 255, 255; //#FFF
+  --ggrid-column-foreground-color: 110, 107, 123; //#6E6B7B
+
+  --ggrid-column-horizontal-padding: 20px;
+  --ggrid-column-vertical-padding: 17px;
+
+  --ggrid-column-font-size: inherit;
+  --ggrid-column-font-weight: bold;
+
+  --ggrid-column-border-width: 1px;
+  --ggrid-column-border-style: solid;
+  --ggrid-column-border-color: 243, 243, 243; //F3F3F3
+
+  /* Row */
+  --ggrid-row-background-color: 255, 255, 255; //#FFF
+  --ggrid-row-foreground-color: 33, 33, 33; //#212121
+
+  --ggrid-row-horizontal-padding: 20px;
+  --ggrid-row-vertical-padding: 12px;
+
+  --ggrid-row-font-size: inherit;
+  --ggrid-row-font-weight: 500;
+
+  --ggrid-row-border-color: 243, 243, 243; //F3F3F3
+  --ggrid-row-border-style: solid;
+  --ggrid-row-border-width: 1px;
+}

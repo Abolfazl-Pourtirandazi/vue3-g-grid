@@ -32,7 +32,12 @@ const { gGrid, getRowData } = useGrid();
           <!-- Rows -->
           <tbody>
             <template v-for="(row, index) in rows" :key="index">
-              <tr>
+              <tr
+                :class="{
+                  even: index % 2,
+                  'border-none': rows.length - 1 === index
+                }"
+              >
                 <th scope="row">{{ index + 1 }}</th>
                 <template v-for="(column, cIndex) in columns" :key="cIndex">
                   <td>
@@ -47,3 +52,7 @@ const { gGrid, getRowData } = useGrid();
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@import "./gGrid.scss";
+</style>
