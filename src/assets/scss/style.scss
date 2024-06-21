@@ -36,4 +36,18 @@
   --ggrid-row-border-color: 243, 243, 243; //F3F3F3
   --ggrid-row-border-style: solid;
   --ggrid-row-border-width: 1px;
+
+  /* Pagination */
+  --ggrid-pagination-btn-background-color: 245, 247, 250; //#F5F7FA
+  --ggrid-pagination-btn-foreground-color: 33, 33, 33; //#212121
+  --ggrid-pagination-btn-active-background-color: 10, 184, 210; //#0ab8d2
+  --ggrid-pagination-btn-active-foreground-color: 255, 255, 255; //#fff
+  --ggrid-pagination-icon-color: 89, 86, 98; //#6D6A76
+
+  --ggrid-pagination-horizontal-padding: 15px;
+  --ggrid-pagination-vertical-padding: 15px;
+
+  --ggrid-pagination-border-color: 243, 243, 243; //f3f3f3
+  --ggrid-pagination-border-style: solid;
+  --ggrid-pagination-border-width: 1px;
 }
