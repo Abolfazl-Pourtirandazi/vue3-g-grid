@@ -1,0 +1,49 @@
+<script lang="ts" setup>
+import useGrid from "@/composables/useGrid";
+import type { GridColumn, GridProps } from "@/@types/grid";
+
+defineOptions({ name: "GGrid" });
+
+withDefaults(defineProps<GridProps>(), {
+  columns: () => [] as GridColumn[],
+  rows: () => [] as object[]
+});
+
+const { gGrid, getRowData } = useGrid();
+</script>
+
+<template>
+  <div class="g-grid">
+    <div ref="gGrid" class="content">
+      <div class="g-table-responsive">
+        <table>
+          <!-- Columns -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <template v-for="(column, index) in columns" :key="index">
+                <th scope="col">
+                  {{ column.title }}
+                </th>
+              </template>
+            </tr>
+          </thead>
+
+          <!-- Rows -->
+          <tbody>
+            <template v-for="(row, index) in rows" :key="index">
+              <tr>
+                <th scope="row">{{ index + 1 }}</th>
+                <template v-for="(column, cIndex) in columns" :key="cIndex">
+                  <td>
+                    {{ getRowData(row, column) }}
+                  </td>
+                </template>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
