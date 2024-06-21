@@ -1,0 +1,9 @@
+i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  transition: 0.5s;
+  font-size: var(--ggrid-icon-size);
+  color: rgb(var(--ggrid-icon-color));
+}
