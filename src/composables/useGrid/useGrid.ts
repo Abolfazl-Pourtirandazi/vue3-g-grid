@@ -10,9 +10,17 @@ const useGrid = () => {
     return row[column.field];
   };
 
+  /* Get Width Data */
+  const width = (column: GridColumn): string | number => {
+    if (column.width) return column.width;
+
+    return "";
+  };
+
   return {
     gGrid,
-    getRowData
+    getRowData,
+    width
   };
 };
 

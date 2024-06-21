@@ -9,7 +9,7 @@ withDefaults(defineProps<GridProps>(), {
   rows: () => [] as object[]
 });
 
-const { gGrid, getRowData } = useGrid();
+const { gGrid, getRowData, width } = useGrid();
 </script>
 
 <template>
@@ -22,7 +22,14 @@ const { gGrid, getRowData } = useGrid();
             <tr>
               <th scope="col">#</th>
               <template v-for="(column, index) in columns" :key="index">
-                <th scope="col">
+                <th
+                  scope="col"
+                  :class="column.columnClassName"
+                  :style="{
+                    minWidth: width(column) + 'px',
+                    maxWidth: width(column) + 'px'
+                  }"
+                >
                   {{ column.title }}
                 </th>
               </template>
@@ -40,7 +47,13 @@ const { gGrid, getRowData } = useGrid();
               >
                 <th scope="row">{{ index + 1 }}</th>
                 <template v-for="(column, cIndex) in columns" :key="cIndex">
-                  <td>
+                  <td
+                    :class="column.rowClassName"
+                    :style="{
+                      minWidth: width(column) + 'px',
+                      maxWidth: width(column) + 'px'
+                    }"
+                  >
                     {{ getRowData(row, column) }}
                   </td>
                 </template>

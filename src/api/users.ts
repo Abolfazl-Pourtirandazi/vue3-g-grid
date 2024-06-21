@@ -1,23 +1,4 @@
 export default {
-  columns: [
-    {
-      title: "first name",
-      field: "first_name"
-    },
-    {
-      title: "permission",
-      field: "permission"
-    },
-    {
-      title: "age",
-      field: "age"
-    },
-    {
-      title: "gender",
-      field: "gender"
-    }
-  ],
-
   rows: [
     {
       first_name: "Adie",
