@@ -59,6 +59,24 @@ export default {
       permission: "user",
       age: 18,
       gender: "male"
+    },
+    {
+      first_name: "Charlie",
+      permission: "user",
+      age: 11,
+      gender: "male"
+    },
+    {
+      first_name: "Marshall",
+      permission: "owner",
+      age: 67,
+      gender: "male"
+    },
+    {
+      first_name: "Samuel",
+      permission: "user",
+      age: 55,
+      gender: "male"
     }
   ]
 };

@@ -1,6 +1,9 @@
 export interface GridProps {
   columns: GridColumn[];
   rows: object[];
+  currentPage: number;
+  perPage: number;
+  totalRows?: number;
 }
 
 export interface GridColumn {
