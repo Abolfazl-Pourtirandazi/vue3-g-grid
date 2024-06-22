@@ -1,8 +1,33 @@
 {
   "name": "vue3-g-grid",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.6.2-alpha",
   "type": "module",
+  "private": false,
+  "description": "g-grid Vue Component Leverages a flat html structure and CSS grid to allow full layout control.",
+  "license": "MIT",
+  "author": {
+    "name": "Abolfazl Portirandazi",
+    "email": "abolfazl.portirandazi@gmail.com"
+  },
+  "homepage": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abolfazl-Portirandazi/vue3-g-grid.git"
+  },
+  "bugs": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid/issues",
+  "keywords": [
+    "ggrid",
+    "g grid",
+    "g-grid",
+    "grid",
+    "table",
+    "vuejs",
+    "vue",
+    "vue3"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
