@@ -9,7 +9,8 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   columns: () => [] as GridColumn[],
   rows: () => [] as object[],
   currentPage: 1,
-  perPage: 10
+  perPage: 10,
+  height: 110
 });
 
 const {
@@ -34,7 +35,7 @@ const {
 <template>
   <div class="g-grid">
     <div ref="gGrid" class="content">
-      <div class="g-table-responsive">
+      <div class="g-table-responsive" :style="{ minHeight: height + 'px' }">
         <table>
           <!-- Columns -->
           <thead>
