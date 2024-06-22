@@ -55,30 +55,38 @@ const {
             </tr>
           </thead>
 
-          <!-- Rows -->
-          <tbody>
-            <template v-for="(row, index) in getItems" :key="index">
-              <tr
-                :class="{
-                  even: index % 2,
-                  'border-none': getItems.length - 1 === index
-                }"
-              >
-                <th scope="row">{{ index + 1 + startIndex }}</th>
-                <template v-for="(column, cIndex) in columns" :key="cIndex">
-                  <td
-                    :class="column.rowClassName"
-                    :style="{
-                      minWidth: width(column) + 'px',
-                      maxWidth: width(column) + 'px'
-                    }"
-                  >
-                    {{ getRowData(row, column) }}
-                  </td>
-                </template>
-              </tr>
-            </template>
-          </tbody>
+          <template v-if="getItems.length">
+            <!-- Rows -->
+
+            <tbody>
+              <template v-for="(row, index) in getItems" :key="index">
+                <tr
+                  :class="{
+                    even: index % 2,
+                    'border-none': getItems.length - 1 === index
+                  }"
+                >
+                  <th scope="row">{{ index + 1 + startIndex }}</th>
+                  <template v-for="(column, cIndex) in columns" :key="cIndex">
+                    <td
+                      :class="column.rowClassName"
+                      :style="{
+                        minWidth: width(column) + 'px',
+                        maxWidth: width(column) + 'px'
+                      }"
+                    >
+                      {{ getRowData(row, column) }}
+                    </td>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+          </template>
+
+          <!-- Empty -->
+          <template v-if="!getItems.length">
+            <div class="empty">No Data Availaible</div>
+          </template>
         </table>
       </div>
 
