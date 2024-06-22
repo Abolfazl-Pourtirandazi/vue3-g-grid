@@ -57,6 +57,21 @@
           }
         }
       }
+
+      .empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        bottom: 20px;
+        right: 0;
+        left: 0;
+        color: rgb(var(--ggrid-empty-color));
+        margin: auto;
+        font-size: var(--ggrid-empty-font-size);
+        font-weight: rgb(var(--ggrid-empty-font-weight));
+      }
     }
 
     .pagination {

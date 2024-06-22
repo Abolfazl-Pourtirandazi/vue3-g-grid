@@ -58,7 +58,6 @@ const {
 
           <template v-if="getItems.length">
             <!-- Rows -->
-
             <tbody>
               <template v-for="(row, index) in getItems" :key="index">
                 <tr
