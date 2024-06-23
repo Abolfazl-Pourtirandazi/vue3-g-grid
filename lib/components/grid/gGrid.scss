@@ -58,6 +58,20 @@
         }
       }
 
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        background-color: rgba(var(--ggrid-overlay-color), 0.3);
+        padding-bottom: 0.9rem;
+      }
+
       .empty {
         display: flex;
         justify-content: center;
