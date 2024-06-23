@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import useGrid from "@/composables/useGrid";
-import GIcon from "@/components/icon/GIcon.vue";
-import type { GridColumn, GridProps } from "@/@types/grid";
+import useGrid from "../../composables/useGrid";
+import GIcon from "../icon/GIcon.vue";
+import type { GridColumn, GridProps } from "../../types/grid";
 
 defineOptions({ name: "GGrid" });
 

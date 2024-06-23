@@ -1,5 +1,5 @@
 import { computed, onUnmounted, ref, toRaw } from "vue";
-import type { GridProps, GridColumn } from "@/@types/grid";
+import type { GridProps, GridColumn } from "../../types/grid";
 
 const useGrid = (
   props: GridProps = {

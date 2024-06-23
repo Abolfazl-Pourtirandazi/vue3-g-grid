@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IconProps } from "@/@types/icon";
+import type { IconProps } from "../../types/icon";
 
 defineOptions({ name: "GIcon", inheritAttrs: false });
 
