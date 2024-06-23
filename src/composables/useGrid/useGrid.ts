@@ -6,7 +6,8 @@ const useGrid = (
     columns: [],
     rows: [],
     currentPage: 1,
-    perPage: 10
+    perPage: 10,
+    serverSide: false
   }
 ) => {
   const maxPaginate: number = 8;
@@ -21,7 +22,15 @@ const useGrid = (
   const currentPage = ref<number>(props.currentPage);
 
   /* Total Rows */
-  const getTotalRows = computed((): number => props.rows.length);
+  const getTotalRows = computed((): number => {
+    //For Server Side
+    if (props.serverSide && props.totalRows) {
+      return props.totalRows;
+    }
+
+    //For Client Side
+    return props.rows.length;
+  });
 
   /* Start Index */
   const startIndex = computed((): number => (currentPage.value - 1) * props.perPage);
@@ -40,6 +49,9 @@ const useGrid = (
   /* Get Item Extend row data */
   const getItems = computed((): object[] => {
     const value: object[] = [...toRaw(props.rows)];
+
+    //For Server Side
+    if (props.serverSide) return value;
 
     //For Client Side
     return value.slice(startIndex.value, endIndex.value);
@@ -101,6 +113,11 @@ const useGrid = (
   /* Change Page Number */
   const handleChangePage = (page: number): void => {
     if (!hasNextPage.value && !hasPreviousPage.value) return;
+
+    //For Server Side
+    if (props.serverSide && props.readData) {
+      props.readData(page);
+    }
 
     currentPage.value = page;
   };

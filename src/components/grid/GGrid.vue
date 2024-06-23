@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   rows: () => [] as object[],
   currentPage: 1,
   perPage: 10,
+  serverSide: false,
   height: 110
 });
 

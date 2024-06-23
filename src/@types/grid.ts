@@ -4,7 +4,9 @@ export interface GridProps {
   currentPage: number;
   perPage: number;
   totalRows?: number;
+  serverSide?: boolean;
   height?: number | string;
+  readData?: null | ((page: number) => void);
 }
 
 export interface GridColumn {
