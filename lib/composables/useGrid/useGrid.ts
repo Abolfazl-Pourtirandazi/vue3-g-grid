@@ -7,6 +7,7 @@ const useGrid = (
     rows: [],
     currentPage: 1,
     perPage: 10,
+    loading: false,
     serverSide: false
   }
 ) => {
@@ -113,6 +114,8 @@ const useGrid = (
   /* Change Page Number */
   const handleChangePage = (page: number): void => {
     if (!hasNextPage.value && !hasPreviousPage.value) return;
+
+    if (page === currentPage.value && props.loading) return;
 
     //For Server Side
     if (props.serverSide && props.readData) {

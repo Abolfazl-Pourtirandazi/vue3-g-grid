@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import useGrid from "../../composables/useGrid";
 import GIcon from "../icon/GIcon.vue";
+import GSpinner from "../spinner/GSpinner.vue";
 import type { GridColumn, GridProps } from "../../types/grid";
 
 defineOptions({ name: "GGrid" });
@@ -10,6 +11,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   rows: () => [] as object[],
   currentPage: 1,
   perPage: 10,
+  loading: false,
   serverSide: false,
   height: 110
 });
@@ -57,6 +59,13 @@ const {
             </tr>
           </thead>
 
+          <!-- Loading -->
+          <div class="loading" v-show="loading">
+            <slot name="loading">
+              <g-spinner />
+            </slot>
+          </div>
+
           <template v-if="getItems.length">
             <!-- Rows -->
             <tbody>
@@ -85,7 +94,7 @@ const {
           </template>
 
           <!-- Empty -->
-          <template v-if="!getItems.length">
+          <template v-if="!getItems.length && !loading">
             <div class="empty">No Data Availaible</div>
           </template>
         </table>
