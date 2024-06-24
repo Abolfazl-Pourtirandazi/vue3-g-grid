@@ -1,4 +1,4 @@
-import { computed, onUnmounted, ref, toRaw } from "vue";
+import { computed, onUnmounted, ref, toRaw, watch } from "vue";
 import type { GridProps, GridColumn } from "../../types/grid";
 
 const useGrid = (
@@ -21,6 +21,14 @@ const useGrid = (
 
   /* Current Page */
   const currentPage = ref<number>(props.currentPage);
+
+  /* Watch For Change Current Page */
+  watch(
+    () => props.currentPage,
+    (value: number) => {
+      currentPage.value = value;
+    }
+  );
 
   /* Total Rows */
   const getTotalRows = computed((): number => {
