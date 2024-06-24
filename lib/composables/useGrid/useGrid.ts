@@ -1,4 +1,5 @@
 import { computed, onUnmounted, ref, toRaw, watch } from "vue";
+import useUtils from "../useUtils";
 import type { GridProps, GridColumn } from "../../types/grid";
 
 const useGrid = (
@@ -11,6 +12,8 @@ const useGrid = (
     serverSide: false
   }
 ) => {
+  const { formatDate } = useUtils();
+
   const maxPaginate: number = 8;
 
   const startPaginate = ref<number>(0);
@@ -124,6 +127,11 @@ const useGrid = (
       }
 
       value = currentObject;
+    }
+
+    //For Type Date
+    if (column.type === "date") {
+      return formatDate(value, column.format);
     }
 
     return value || "-";

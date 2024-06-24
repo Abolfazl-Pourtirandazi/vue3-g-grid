@@ -10,10 +10,14 @@ export interface GridProps {
   readData?: null | ((page: number) => void);
 }
 
+export type GridType = "date";
+
 export interface GridColumn {
   title: string;
   field: string;
   width?: string | number;
+  type?: GridType;
+  format?: string;
   columnClassName?: string;
   rowClassName?: string;
 }
