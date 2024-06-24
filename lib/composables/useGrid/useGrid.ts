@@ -101,7 +101,24 @@ const useGrid = (
 
   /* Get Row Data */
   const getRowData = (row: any, column: GridColumn): string => {
-    return row[column.field];
+    let value = row[column.field];
+
+    //For Nested Object
+    if (column.field.includes(".")) {
+      const parts = column.field.split(".");
+
+      let currentObject = row;
+
+      for (const part of parts) {
+        if (currentObject) {
+          currentObject = currentObject[part] || "";
+        }
+      }
+
+      value = currentObject;
+    }
+
+    return value || "-";
   };
 
   /* Get Width Data */
