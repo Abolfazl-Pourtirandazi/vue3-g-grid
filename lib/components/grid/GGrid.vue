@@ -101,7 +101,9 @@ const {
                 <th scope="row" colspan="1"></th>
                 <template v-for="(column, cIndex) in columns" :key="cIndex">
                   <th colspan="1" :style="{ minWidth: width(column) + 'px' }">
-                    {{ column.footer }}
+                    <slot :name="column.footerCell" v-bind="{ column, aggregates: getAggregates }">
+                      {{ column.footer }}
+                    </slot>
                   </th>
                 </template>
               </tr>
