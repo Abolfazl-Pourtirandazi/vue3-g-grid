@@ -22,6 +22,9 @@ export interface GridColumn {
   aggregate?: GridAggregateType;
   type?: GridType;
   format?: string;
+  columnCell?: string;
+  footerCell?: string;
+  footer?: string | number;
   columnClassName?: string;
   rowClassName?: string;
 }

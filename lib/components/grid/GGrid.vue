@@ -24,6 +24,7 @@ const {
   getItems,
   hasNextPage,
   hasPreviousPage,
+  getAggregates,
   startIndex,
   endIndex,
   getTotalRows,
