@@ -40,6 +40,16 @@
   --ggrid-row-border-style: solid;
   --ggrid-row-border-width: 1px;
 
+  /* Footer */
+  --ggrid-footer-background-color: 245, 247, 250; //#F5F7FA
+  --ggrid-footer-foreground-color: 33, 33, 33; //#212121
+
+  --ggrid-footer-horizontal-padding: 20px;
+  --ggrid-footer-vertical-padding: 10px;
+
+  --ggrid-footer-font-size: inherit;
+  --ggrid-footer-font-weight: bold;
+
   /* Pagination */
   --ggrid-pagination-btn-background-color: 245, 247, 250; //#F5F7FA
   --ggrid-pagination-btn-foreground-color: 33, 33, 33; //#212121

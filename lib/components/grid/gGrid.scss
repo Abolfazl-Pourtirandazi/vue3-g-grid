@@ -56,6 +56,21 @@
             }
           }
         }
+
+        tfoot {
+          tr {
+            background-color: rgba(var(--ggrid-footer-background-color), 0.5);
+
+            th,
+            td {
+              color: rgb(var(--ggrid-footer-foreground-color));
+              padding: var(--ggrid-footer-vertical-padding) var(--ggrid-footer-horizontal-padding);
+              font-size: var(--ggrid-footer-font-size);
+              font-weight: var(--ggrid-footer-font-weight);
+              text-align: inherit;
+            }
+          }
+        }
       }
 
       .loading {
