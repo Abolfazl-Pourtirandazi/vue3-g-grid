@@ -13,7 +13,7 @@ const useGrid = (
     serverSide: false
   }
 ) => {
-  const { formatDate, toFixed } = useUtils();
+  const { formatDate, separateNumber, toFixed } = useUtils();
 
   const maxPaginate: number = 8;
 
@@ -168,6 +168,11 @@ const useGrid = (
     //For Type toFixed
     if (column.type === "toFixed") {
       return toFixed(value, Number(column.format) || 2);
+    }
+
+    //For Type separateNumber
+    if (column.type === "separateNumber") {
+      return separateNumber(value, column.format);
     }
 
     return value || "-";
