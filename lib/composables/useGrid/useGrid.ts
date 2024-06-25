@@ -165,6 +165,11 @@ const useGrid = (
       return formatDate(value, column.format);
     }
 
+    //For Type toFixed
+    if (column.type === "toFixed") {
+      return toFixed(value, Number(column.format) || 2);
+    }
+
     return value || "-";
   };
 

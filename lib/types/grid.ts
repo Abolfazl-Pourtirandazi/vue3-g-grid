@@ -13,7 +13,7 @@ export interface GridProps {
 
 export type GridAggregateType = "sum" | "avg";
 
-export type GridType = "date";
+export type GridType = "date" | "toFixed";
 
 export interface GridColumn {
   title: string;
