@@ -53,7 +53,9 @@ const {
                     maxWidth: width(column) + 'px'
                   }"
                 >
-                  {{ column.title }}
+                  <slot :name="column.columnCell" v-bind="{ column }">
+                    {{ column.title }}
+                  </slot>
                 </th>
               </template>
             </tr>
