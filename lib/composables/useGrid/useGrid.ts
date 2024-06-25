@@ -8,6 +8,7 @@ const useGrid = (
     rows: [],
     currentPage: 1,
     perPage: 10,
+    footer: false,
     loading: false,
     serverSide: false
   }

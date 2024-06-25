@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   rows: () => [] as object[],
   currentPage: 1,
   perPage: 10,
+  footer: false,
   loading: false,
   serverSide: false,
   height: 110
@@ -93,6 +94,18 @@ const {
                 </tr>
               </template>
             </tbody>
+
+            <!-- Footer -->
+            <tfoot v-if="footer">
+              <tr>
+                <th scope="row" colspan="1"></th>
+                <template v-for="(column, cIndex) in columns" :key="cIndex">
+                  <th colspan="1" :style="{ minWidth: width(column) + 'px' }">
+                    {{ column.footer }}
+                  </th>
+                </template>
+              </tr>
+            </tfoot>
           </template>
 
           <!-- Empty -->
