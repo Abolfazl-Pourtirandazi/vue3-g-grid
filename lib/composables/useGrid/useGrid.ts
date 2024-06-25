@@ -213,6 +213,16 @@ const useGrid = (
     handleChangePage(currentPage.value - 1);
   };
 
+  /* First Page */
+  const firstPage = () => {
+    handleChangePage(1);
+  };
+
+  /* Last Page */
+  const lastPage = () => {
+    handleChangePage(totalPages.value);
+  };
+
   onUnmounted(() => {
     currentPage.value = props.currentPage;
   });
@@ -233,6 +243,8 @@ const useGrid = (
     width,
     nextPage,
     previousPage,
+    firstPage,
+    lastPage,
     handleChangePage
   };
 };
