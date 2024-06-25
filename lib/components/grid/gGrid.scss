@@ -1,10 +1,10 @@
 .g-grid {
-  .content {
+  .gg--content {
     position: relative;
     background-color: rgb(var(--ggrid-background-color));
     font-size: var(--ggrid-font-size);
 
-    .g-table-responsive {
+    .gg--table-responsive {
       overflow-x: auto;
 
       table {
@@ -38,11 +38,11 @@
             border-bottom: var(--ggrid-row-border-width) var(--ggrid-row-border-style)
               rgb(var(--ggrid-row-border-color));
 
-            &.even {
+            &.gg--even {
               background-color: rgb(var(--ggrid-active-color));
             }
 
-            &.border-none {
+            &.gg--border-none {
               border: unset !important;
             }
 
@@ -73,7 +73,7 @@
         }
       }
 
-      .loading {
+      .gg--loading {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -87,7 +87,7 @@
         padding-bottom: 0.9rem;
       }
 
-      .empty {
+      .gg--empty {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -103,7 +103,7 @@
       }
     }
 
-    .pagination {
+    .gg--pagination {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -115,38 +115,38 @@
         flex-direction: row !important;
         justify-content: space-between;
 
-        .p-desc {
+        .gg--description {
           display: block !important;
         }
       }
 
-      .p-desc {
+      .gg--description {
         display: none;
       }
 
-      .p-data {
+      .gg--button-groups {
         display: flex;
         gap: 7px;
 
-        .p-numbers {
+        .gg--pages {
           display: flex;
           gap: 7px;
 
-          .p-number {
+          .gg--page {
             display: flex;
             align-items: center;
             justify-content: center;
             min-width: 35px;
             color: rgb(var(--ggrid-pagination-btn-foreground-color));
 
-            &.active {
+            &.gg--active {
               background-color: rgb(var(--ggrid-pagination-btn-active-background-color));
               color: rgb(var(--ggrid-pagination-btn-active-foreground-color));
             }
           }
         }
 
-        .item {
+        .gg--button {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -160,8 +160,8 @@
             color: rgb(var(--ggrid-pagination-icon-color));
           }
 
-          &.disabled {
-            cursor: unset;
+          &.gg--disabled {
+            cursor: not-allowed;
 
             .g-icon {
               opacity: 0.5;

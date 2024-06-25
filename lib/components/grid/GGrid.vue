@@ -33,14 +33,16 @@ const {
   width,
   nextPage,
   previousPage,
+  firstPage,
+  lastPage,
   handleChangePage
 } = useGrid(props);
 </script>
 
 <template>
   <div class="g-grid">
-    <div ref="gGrid" class="content">
-      <div class="g-table-responsive" :style="{ minHeight: height + 'px' }">
+    <div ref="gGrid" class="gg--content">
+      <div class="gg--table-responsive" :style="{ minHeight: height + 'px' }">
         <table>
           <!-- Columns -->
           <thead>
@@ -64,7 +66,7 @@ const {
           </thead>
 
           <!-- Loading -->
-          <div class="loading" v-show="loading">
+          <div class="gg--loading" v-show="loading">
             <slot name="loading">
               <g-spinner />
             </slot>
@@ -76,8 +78,8 @@ const {
               <template v-for="(row, index) in getItems" :key="index">
                 <tr
                   :class="{
-                    even: index % 2,
-                    'border-none': getItems.length - 1 === index
+                    'gg--even': index % 2,
+                    'gg--border-none': getItems.length - 1 === index
                   }"
                 >
                   <th scope="row">{{ index + 1 + startIndex }}</th>
@@ -113,39 +115,41 @@ const {
 
           <!-- Empty -->
           <template v-if="!getItems.length && !loading">
-            <div class="empty">No Data Availaible</div>
+            <div class="gg--empty">No Data Availaible</div>
           </template>
         </table>
       </div>
 
       <!-- Pagination -->
-      <div class="pagination">
-        <div class="p-desc">
+      <div class="gg--pagination">
+        <div class="gg-description">
           Showing {{ endIndex >= 1 ? startIndex + 1 : 0 }} to {{ endIndex }} of {{ getTotalRows }} entries
         </div>
 
-        <div class="p-data">
-          <div class="first item" :class="{ disabled: !hasPreviousPage }" @click="handleChangePage(1)">
+        <div class="gg--button-groups">
+          <div class="gg--first-page gg--button" :class="{ 'gg--disabled': !hasPreviousPage }" @click="firstPage">
             <g-icon icon="mdi mdi-chevron-double-left" />
           </div>
-          <div class="previous item" :class="{ disabled: !hasPreviousPage }" @click="previousPage">
+          <div class="gg--previous-page gg--button" :class="{ 'gg--disabled': !hasPreviousPage }" @click="previousPage">
             <g-icon icon="mdi mdi-chevron-left" />
           </div>
-          <div class="p-numbers">
+
+          <div class="gg--pages">
             <template v-for="number in paginate" :key="number">
               <div
-                class="p-number item"
-                :class="{ active: Number(number) + 1 === currentPage }"
+                class="gg--page gg--button"
+                :class="{ 'gg--active': Number(number) + 1 === currentPage }"
                 @click="handleChangePage(Number(number) + 1)"
               >
                 {{ Number(number) + 1 }}
               </div>
             </template>
           </div>
-          <div class="next item" :class="{ disabled: !hasNextPage }" @click="nextPage">
+
+          <div class="gg--next-page gg--button" :class="{ 'gg--disabled': !hasNextPage }" @click="nextPage">
             <g-icon icon="mdi mdi-chevron-right" />
           </div>
-          <div class="last item" :class="{ disabled: !hasNextPage }" @click="handleChangePage(totalPages)">
+          <div class="gg--last-page gg--button" :class="{ 'gg--disabled': !hasNextPage }" @click="lastPage">
             <g-icon icon="mdi mdi-chevron-double-right" />
           </div>
         </div>
