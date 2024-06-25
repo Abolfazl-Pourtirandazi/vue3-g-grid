@@ -1,6 +1,6 @@
 import { computed, onUnmounted, ref, toRaw, watch } from "vue";
 import useUtils from "../useUtils";
-import type { GridProps, GridColumn } from "../../types/grid";
+import type { GridProps, GridColumn, GridAggregates, GridAggregateType } from "../../types/grid";
 
 const useGrid = (
   props: GridProps = {
@@ -13,7 +13,7 @@ const useGrid = (
     serverSide: false
   }
 ) => {
-  const { formatDate } = useUtils();
+  const { formatDate, toFixed } = useUtils();
 
   const maxPaginate: number = 8;
 
@@ -78,6 +78,36 @@ const useGrid = (
 
   /* Pagination Number */
   const totalPages = computed((): number => Math.ceil(getTotalRows.value / props.perPage));
+
+  /* Get Aggregates */
+  const getAggregates = computed((): GridAggregates => {
+    const result: GridAggregates = {};
+
+    props.columns.forEach((column: GridColumn) => {
+      if (column.aggregate) {
+        const key: string = column.field;
+        const type: GridAggregateType = column.aggregate;
+
+        getItems.value.forEach((item: any) => {
+          if (!result[key]) {
+            result[key] = 0;
+          }
+
+          result[key] += Number(item[key]);
+        });
+
+        if (type === "avg") {
+          result[key] = Number(result[key] / getItems.value.length);
+        }
+
+        if (result[key] % 1 != 0) {
+          result[key] = Number(toFixed(result[key], 2));
+        }
+      }
+    });
+
+    return result;
+  });
 
   /* Paginate */
   const paginate = computed((): number[] => {
@@ -183,6 +213,7 @@ const useGrid = (
     totalPages,
     getItems,
     hasNextPage,
+    getAggregates,
     hasPreviousPage,
     startIndex,
     endIndex,

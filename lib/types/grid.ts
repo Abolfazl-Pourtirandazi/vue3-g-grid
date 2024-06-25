@@ -11,14 +11,21 @@ export interface GridProps {
   readData?: null | ((page: number) => void);
 }
 
+export type GridAggregateType = "sum" | "avg";
+
 export type GridType = "date";
 
 export interface GridColumn {
   title: string;
   field: string;
   width?: string | number;
+  aggregate?: GridAggregateType;
   type?: GridType;
   format?: string;
   columnClassName?: string;
   rowClassName?: string;
+}
+
+export interface GridAggregates {
+  [key: string]: number;
 }
