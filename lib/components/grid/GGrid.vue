@@ -137,10 +137,10 @@ const {
 
         <div class="gg--button-groups">
           <div class="gg--first-page gg--button" :class="{ 'gg--disabled': !hasPreviousPage }" @click="firstPage">
-            <g-icon icon="mdi mdi-chevron-double-left" />
+            <g-icon icon="mdi mdi-chevron-double-left" :rotation="rtl ? 180 : 0" />
           </div>
           <div class="gg--previous-page gg--button" :class="{ 'gg--disabled': !hasPreviousPage }" @click="previousPage">
-            <g-icon icon="mdi mdi-chevron-left" />
+            <g-icon icon="mdi mdi-chevron-left" :rotation="rtl ? 180 : 0" />
           </div>
 
           <div class="gg--pages">
@@ -156,10 +156,10 @@ const {
           </div>
 
           <div class="gg--next-page gg--button" :class="{ 'gg--disabled': !hasNextPage }" @click="nextPage">
-            <g-icon icon="mdi mdi-chevron-right" />
+            <g-icon icon="mdi mdi-chevron-right" :rotation="rtl ? 180 : 0" />
           </div>
           <div class="gg--last-page gg--button" :class="{ 'gg--disabled': !hasNextPage }" @click="lastPage">
-            <g-icon icon="mdi mdi-chevron-double-right" />
+            <g-icon icon="mdi mdi-chevron-double-right" :rotation="rtl ? 180 : 0" />
           </div>
         </div>
       </div>
