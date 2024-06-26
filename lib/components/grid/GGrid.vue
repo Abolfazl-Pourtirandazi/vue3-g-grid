@@ -97,7 +97,9 @@ const {
                         maxWidth: width(column) + 'px'
                       }"
                     >
-                      {{ getRowData(row, column) }}
+                      <slot :name="column.rowCell" v-bind="{ row, column }">
+                        {{ getRowData(row, column) }}
+                      </slot>
                     </td>
                   </template>
                 </tr>

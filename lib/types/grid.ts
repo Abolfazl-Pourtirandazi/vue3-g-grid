@@ -27,6 +27,7 @@ export interface GridColumn {
   type?: GridType;
   format?: string;
   columnCell?: string;
+  rowCell?: string;
   footerCell?: string;
   footer?: string | number;
   columnClassName?: string;
