@@ -28,6 +28,13 @@
 
             th {
               position: relative;
+
+              .icon-sort {
+                position: absolute;
+                top: 13px;
+                left: 0;
+                color: rgb(var(--ggrid-sort-icon-color));
+              }
             }
           }
         }
