@@ -20,7 +20,6 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
 const {
   gGrid,
   currentPage,
-  totalPages,
   getItems,
   hasNextPage,
   hasPreviousPage,
