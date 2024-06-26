@@ -1,4 +1,5 @@
 import moment from "moment-jalaali";
+import type { SortDirection, SortableItem } from "../../types/utils";
 
 const useUtils = () => {
   /* To Fixed Number */
@@ -30,6 +31,65 @@ const useUtils = () => {
     return moment().format(format);
   };
 
+  /* Sort */
+  const sorting = (items: SortableItem[], field: string, direction: SortDirection = "up"): void => {
+    items.sort((a, b) => {
+      const aData: any = a[field];
+      const bData: any = b[field];
+
+      //Sort Default
+      if (!aData && !bData) {
+        return 0;
+      }
+
+      //Sort String
+      const sortString = () => {
+        const nameA = aData.toUpperCase();
+        const nameB = bData.toUpperCase();
+
+        //Up Sort
+        if (direction === "down") {
+          if (nameA > nameB) {
+            return -1;
+          }
+
+          if (nameA < nameB) {
+            return 1;
+          }
+        }
+
+        //Down Sort
+        if (nameA < nameB) {
+          return -1;
+        }
+
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        //Default
+        return 0;
+      };
+
+      //Sort Number
+      const sortNumber = () => {
+        //Down Sort
+        if (direction === "down") {
+          return aData - bData;
+        }
+
+        //Up Sort
+        return bData - aData;
+      };
+
+      if (!isNumeric(aData) && !isNumeric(bData)) {
+        return sortString();
+      }
+
+      return sortNumber();
+    });
+  };
+
   /* To En Digit */
   const toEnDigit = (value: string): string => {
     return value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, (match): string => {
@@ -42,7 +102,7 @@ const useUtils = () => {
     return !isNaN(value);
   };
 
-  return { formatDate, separateNumber, toFixed };
+  return { sorting, formatDate, separateNumber, toFixed };
 };
 
 export default useUtils;

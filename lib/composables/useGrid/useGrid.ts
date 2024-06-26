@@ -1,6 +1,14 @@
 import { computed, onUnmounted, ref, toRaw, watch } from "vue";
 import useUtils from "../useUtils";
-import type { GridProps, GridColumn, GridAggregates, GridAggregateType } from "../../types/grid";
+import type { SortDirection } from "../../types/utils";
+import type {
+  GridProps,
+  GridColumn,
+  GridAggregates,
+  GridAggregateType,
+  GridSort,
+  ColumnSorted
+} from "../../types/grid";
 
 const useGrid = (
   props: GridProps = {
@@ -13,10 +21,11 @@ const useGrid = (
     serverSide: false
   }
 ) => {
-  const { formatDate, separateNumber, toFixed } = useUtils();
+  const { sorting, formatDate, separateNumber, toFixed } = useUtils();
 
   const maxPaginate: number = 8;
 
+  const sort = ref<string>("");
   const startPaginate = ref<number>(0);
   const endPaginate = ref<number>(maxPaginate);
 
@@ -63,6 +72,14 @@ const useGrid = (
   const getItems = computed((): object[] => {
     const value: object[] = [...toRaw(props.rows)];
 
+    //Sorting
+    if (sort.value) {
+      const { field: sortField, direction } = getSort.value;
+
+      //Sorting Value
+      sorting(value, sortField, direction);
+    }
+
     //For Server Side
     if (props.serverSide) return value;
 
@@ -107,6 +124,16 @@ const useGrid = (
     });
 
     return result;
+  });
+
+  /* Get Sort */
+  const getSort = computed((): GridSort => {
+    const [field, direction] = sort.value.split(",");
+
+    return {
+      field: field,
+      direction: direction as SortDirection
+    };
   });
 
   /* Paginate */
@@ -223,7 +250,45 @@ const useGrid = (
     handleChangePage(totalPages.value);
   };
 
+  /* Sort Data */
+  const handleSortData = (column: GridColumn): void => {
+    const { field: sortField, direction } = getSort.value;
+
+    if (column.sortable) {
+      if (sortField === column.field && direction === "down") {
+        sort.value = "";
+      } else if (sortField === column.field && direction === "up") {
+        sort.value = column.field + ",down";
+      } else {
+        sort.value = column.field + ",up";
+      }
+    }
+  };
+
+  /* Has Column Sorted */
+  const hasColumnSorted = (column: GridColumn): ColumnSorted => {
+    const result: ColumnSorted = { isValid: false, icon: "" };
+
+    const { field: sortField, direction } = getSort.value;
+
+    if (column.sortable && sortField === column.field) {
+      result.isValid = true;
+
+      if (direction === "up") {
+        result.icon = "mdi mdi-arrow-up-thin";
+      }
+
+      if (direction === "down") {
+        result.icon = "mdi mdi-arrow-down-thin";
+      }
+    }
+
+    return result;
+  };
+
   onUnmounted(() => {
+    sort.value = "";
+
     currentPage.value = props.currentPage;
   });
 
@@ -245,6 +310,8 @@ const useGrid = (
     previousPage,
     firstPage,
     lastPage,
+    handleSortData,
+    hasColumnSorted,
     handleChangePage
   };
 };

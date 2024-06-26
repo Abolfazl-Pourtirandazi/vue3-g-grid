@@ -1,3 +1,5 @@
+import type { SortDirection } from "./utils";
+
 export interface GridProps {
   columns: GridColumn[];
   rows: object[];
@@ -18,6 +20,7 @@ export type GridType = "date" | "toFixed" | "separateNumber";
 export interface GridColumn {
   title: string;
   field: string;
+  sortable?: boolean;
   width?: string | number;
   aggregate?: GridAggregateType;
   type?: GridType;
@@ -31,4 +34,14 @@ export interface GridColumn {
 
 export interface GridAggregates {
   [key: string]: number;
+}
+
+export interface GridSort {
+  field: string;
+  direction: SortDirection;
+}
+
+export interface ColumnSorted {
+  isValid: boolean;
+  icon: string;
 }
