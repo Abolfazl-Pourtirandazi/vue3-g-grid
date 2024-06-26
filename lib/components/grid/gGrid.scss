@@ -30,7 +30,7 @@
             th {
               position: relative;
 
-              .icon-sort {
+              .gg--icon-sort {
                 position: absolute;
                 top: 13px;
                 left: 0;
@@ -173,6 +173,33 @@
 
             .g-icon {
               opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.rtl {
+    .gg--content {
+      direction: rtl;
+
+      .gg--pagination {
+        @media screen and (min-width: 658px) {
+          flex-direction: row-reverse !important;
+        }
+      }
+
+      .gg--table-responsive {
+        table {
+          thead {
+            tr {
+              th {
+                .gg--icon-sort {
+                  left: unset;
+                  right: 0;
+                }
+              }
             }
           }
         }

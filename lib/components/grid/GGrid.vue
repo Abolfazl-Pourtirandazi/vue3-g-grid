@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   loading: false,
   serverSide: false,
   height: 110,
+  rtl: false,
   dark: false
 });
 
@@ -42,7 +43,7 @@ const {
 </script>
 
 <template>
-  <div class="g-grid" :class="{ dark: dark }">
+  <div class="g-grid" :class="{ rtl: rtl, dark: dark }">
     <div ref="gGrid" class="gg--content">
       <div class="gg--table-responsive" :style="{ minHeight: height + 'px' }">
         <table>
@@ -61,7 +62,7 @@ const {
                   @click="handleSortData(column)"
                 >
                   <template v-if="hasColumnSorted(column).isValid">
-                    <g-icon class="icon-sort" :icon="hasColumnSorted(column).icon" />
+                    <g-icon class="gg--icon-sort" :icon="hasColumnSorted(column).icon" />
                   </template>
                   <slot :name="column.columnCell" v-bind="{ column }">
                     {{ column.title }}

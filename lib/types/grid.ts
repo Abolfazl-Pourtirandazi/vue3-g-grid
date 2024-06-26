@@ -10,6 +10,7 @@ export interface GridProps {
   loading?: boolean;
   serverSide?: boolean;
   height?: number | string;
+  rtl?: boolean;
   dark?: boolean;
   readData?: null | ((page: number) => void);
 }
