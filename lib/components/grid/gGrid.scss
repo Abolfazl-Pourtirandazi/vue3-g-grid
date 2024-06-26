@@ -1,6 +1,7 @@
 .g-grid {
   .gg--content {
     position: relative;
+    color: rgb(var(--ggrid-foreground-color));
     background-color: rgb(var(--ggrid-background-color));
     font-size: var(--ggrid-font-size);
 

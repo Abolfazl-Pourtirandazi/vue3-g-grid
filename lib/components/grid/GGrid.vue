@@ -14,7 +14,8 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   footer: false,
   loading: false,
   serverSide: false,
-  height: 110
+  height: 110,
+  dark: false
 });
 
 const {
@@ -41,7 +42,7 @@ const {
 </script>
 
 <template>
-  <div class="g-grid">
+  <div class="g-grid" :class="{ dark: dark }">
     <div ref="gGrid" class="gg--content">
       <div class="gg--table-responsive" :style="{ minHeight: height + 'px' }">
         <table>
