@@ -6,6 +6,7 @@
     font-size: var(--ggrid-font-size);
 
     .gg--table-responsive {
+      position: relative;
       overflow-x: auto;
 
       table {
@@ -100,8 +101,8 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 0;
-        bottom: 20px;
+        top: 50%;
+        bottom: 0;
         right: 0;
         left: 0;
         color: rgb(var(--ggrid-empty-color));
