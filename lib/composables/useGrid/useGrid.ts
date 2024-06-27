@@ -35,6 +35,9 @@ const useGrid = (
   /* Current Page */
   const currentPage = ref<number>(props.currentPage);
 
+  /* Pagination Number */
+  const totalPages = computed((): number => Math.ceil(getTotalRows.value / props.perPage));
+
   /* Watch For Change Current Page */
   watch(
     () => props.currentPage,
@@ -68,8 +71,11 @@ const useGrid = (
     return value;
   });
 
-  /* Get Item Extend row data */
-  const getItems = computed((): object[] => {
+  /* Get Columns */
+  const getColumns = computed(() => props.columns);
+
+  /* Get Rows */
+  const getRows = computed((): object[] => {
     const value: object[] = [...toRaw(props.rows)];
 
     //Sorting
@@ -93,9 +99,6 @@ const useGrid = (
   /* Has Previous Page */
   const hasPreviousPage = computed((): boolean => startIndex.value > 0);
 
-  /* Pagination Number */
-  const totalPages = computed((): number => Math.ceil(getTotalRows.value / props.perPage));
-
   /* Get Aggregates */
   const getAggregates = computed((): GridAggregates => {
     const result: GridAggregates = {};
@@ -105,7 +108,7 @@ const useGrid = (
         const key: string = column.field;
         const type: GridAggregateType = column.aggregate;
 
-        getItems.value.forEach((item: any) => {
+        getRows.value.forEach((item: any) => {
           if (!result[key]) {
             result[key] = 0;
           }
@@ -114,7 +117,7 @@ const useGrid = (
         });
 
         if (type === "avg") {
-          result[key] = Number(result[key] / getItems.value.length);
+          result[key] = Number(result[key] / getRows.value.length);
         }
 
         if (result[key] % 1 != 0) {
@@ -168,8 +171,8 @@ const useGrid = (
     return array.slice(startPaginate.value, endPaginate.value);
   });
 
-  /* Get Row Data */
-  const getRowData = (row: any, column: GridColumn): string => {
+  /* Get Row Value */
+  const getRowValue = (row: any, column: GridColumn): string => {
     let value = row[column.field];
 
     //For Nested Object
@@ -205,27 +208,6 @@ const useGrid = (
     return value || "-";
   };
 
-  /* Get Width Data */
-  const width = (column: GridColumn): string | number => {
-    if (column.width) return column.width;
-
-    return "";
-  };
-
-  /* Change Page Number */
-  const handleChangePage = (page: number): void => {
-    if (!hasNextPage.value && !hasPreviousPage.value) return;
-
-    if (page === currentPage.value && props.loading) return;
-
-    //For Server Side
-    if (props.serverSide && props.readData) {
-      props.readData(page);
-    }
-
-    currentPage.value = page;
-  };
-
   /* Next Page */
   const nextPage = (): void => {
     if (!hasNextPage.value) return;
@@ -250,19 +232,18 @@ const useGrid = (
     handleChangePage(totalPages.value);
   };
 
-  /* Sort Data */
-  const handleSortData = (column: GridColumn): void => {
-    const { field: sortField, direction } = getSort.value;
+  /* Change Page Number */
+  const handleChangePage = (page: number): void => {
+    if (!hasNextPage.value && !hasPreviousPage.value) return;
 
-    if (column.sortable) {
-      if (sortField === column.field && direction === "down") {
-        sort.value = "";
-      } else if (sortField === column.field && direction === "up") {
-        sort.value = column.field + ",down";
-      } else {
-        sort.value = column.field + ",up";
-      }
+    if (page === currentPage.value && props.loading) return;
+
+    //For Server Side
+    if (props.serverSide && props.readData) {
+      props.readData(page);
     }
+
+    currentPage.value = page;
   };
 
   /* Has Column Sorted */
@@ -286,6 +267,28 @@ const useGrid = (
     return result;
   };
 
+  /* Sort Data */
+  const handleSortData = (column: GridColumn): void => {
+    const { field: sortField, direction } = getSort.value;
+
+    if (column.sortable) {
+      if (sortField === column.field && direction === "down") {
+        sort.value = "";
+      } else if (sortField === column.field && direction === "up") {
+        sort.value = column.field + ",down";
+      } else {
+        sort.value = column.field + ",up";
+      }
+    }
+  };
+
+  /* Get Width Data */
+  const width = (column: GridColumn): string | number => {
+    if (column.width) return column.width;
+
+    return "";
+  };
+
   onUnmounted(() => {
     sort.value = "";
 
@@ -296,23 +299,24 @@ const useGrid = (
     gGrid,
     currentPage,
     totalPages,
-    getItems,
-    hasNextPage,
-    getAggregates,
-    hasPreviousPage,
+    getTotalRows,
     startIndex,
     endIndex,
-    getTotalRows,
+    getColumns,
+    getRows,
+    hasNextPage,
+    hasPreviousPage,
+    getAggregates,
     paginate,
-    getRowData,
-    width,
+    getRowValue,
     nextPage,
     previousPage,
     firstPage,
     lastPage,
-    handleSortData,
+    handleChangePage,
     hasColumnSorted,
-    handleChangePage
+    handleSortData,
+    width
   };
 };
 

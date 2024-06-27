@@ -22,23 +22,24 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
 const {
   gGrid,
   currentPage,
-  getItems,
+  getTotalRows,
+  startIndex,
+  endIndex,
+  getColumns,
+  getRows,
   hasNextPage,
   hasPreviousPage,
   getAggregates,
-  startIndex,
-  endIndex,
-  getTotalRows,
   paginate,
-  getRowData,
-  width,
+  getRowValue,
   nextPage,
   previousPage,
   firstPage,
   lastPage,
-  handleSortData,
+  handleChangePage,
   hasColumnSorted,
-  handleChangePage
+  handleSortData,
+  width
 } = useGrid(props);
 </script>
 
@@ -51,7 +52,7 @@ const {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <template v-for="(column, index) in columns" :key="index">
+              <template v-for="(column, index) in getColumns" :key="index">
                 <th
                   scope="col"
                   :class="column.columnClassName"
@@ -79,14 +80,14 @@ const {
             </slot>
           </div>
 
-          <template v-if="getItems.length">
+          <template v-if="getRows.length">
             <!-- Rows -->
             <tbody>
-              <template v-for="(row, index) in getItems" :key="index">
+              <template v-for="(row, index) in getRows" :key="index">
                 <tr
                   :class="{
                     'gg--even': index % 2,
-                    'gg--border-none': getItems.length - 1 === index
+                    'gg--border-none': getRows.length - 1 === index
                   }"
                 >
                   <th scope="row">{{ index + 1 + startIndex }}</th>
@@ -99,7 +100,7 @@ const {
                       }"
                     >
                       <slot :name="column.rowCell" v-bind="{ row, column }">
-                        {{ getRowData(row, column) }}
+                        {{ getRowValue(row, column) }}
                       </slot>
                     </td>
                   </template>
@@ -123,7 +124,7 @@ const {
           </template>
 
           <!-- Empty -->
-          <template v-if="!getItems.length && !loading">
+          <template v-if="!getRows.length && !loading">
             <div class="gg--empty">No Data Availaible</div>
           </template>
         </table>
