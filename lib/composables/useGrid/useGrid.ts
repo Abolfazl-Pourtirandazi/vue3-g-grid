@@ -16,6 +16,7 @@ const useGrid = (
     rows: [],
     currentPage: 1,
     perPage: 10,
+    pageRangeDisplayed: 4,
     footer: false,
     loading: false,
     serverSide: false
@@ -23,11 +24,7 @@ const useGrid = (
 ) => {
   const { sorting, formatDate, separateNumber, toFixed } = useUtils();
 
-  const maxPaginate: number = 8;
-
   const sort = ref<string>("");
-  const startPaginate = ref<number>(0);
-  const endPaginate = ref<number>(maxPaginate);
 
   /* Element Ref */
   const gGrid = ref<HTMLElement>();
@@ -35,7 +32,7 @@ const useGrid = (
   /* Current Page */
   const currentPage = ref<number>(props.currentPage);
 
-  /* Pagination Number */
+  /* Total Pages */
   const totalPages = computed((): number => Math.ceil(getTotalRows.value / props.perPage));
 
   /* Watch For Change Current Page */
@@ -139,36 +136,14 @@ const useGrid = (
     };
   });
 
-  /* Paginate */
-  const paginate = computed((): number[] => {
-    const array: number[] = Object.keys(Array(totalPages.value).fill(null)).map(Number);
+  /* Pages To Display  */
+  const pagesToDisplay = computed((): number[] => {
+    const maxPages = Math.min(totalPages.value, props.pageRangeDisplayed);
 
-    if (!array.length) return array;
+    const halfMaxPages = Math.floor(maxPages / 2);
+    const start = Math.max(1, Math.min(currentPage.value - halfMaxPages, totalPages.value - maxPages + 1));
 
-    if (array.length + 1 < endPaginate.value) {
-      endPaginate.value = array.length;
-    } else {
-      const start: number = startPaginate.value;
-      const end: number = endPaginate.value;
-
-      if (currentPage.value === 1) {
-        startPaginate.value = 0;
-        endPaginate.value = totalPages.value <= maxPaginate ? totalPages.value : maxPaginate;
-      } else if (currentPage.value === totalPages.value) {
-        startPaginate.value = totalPages.value - maxPaginate;
-        endPaginate.value = totalPages.value;
-      } else {
-        if (currentPage.value <= start + 1 && end > maxPaginate) {
-          startPaginate.value = start + 2 - maxPaginate / 2;
-          endPaginate.value = start + 2;
-        } else if (currentPage.value > end - 1) {
-          startPaginate.value = end - 2;
-          endPaginate.value = end + maxPaginate - 2;
-        }
-      }
-    }
-
-    return array.slice(startPaginate.value, endPaginate.value);
+    return Array.from({ length: maxPages }, (_, i) => start + i);
   });
 
   /* Get Row Value */
@@ -307,7 +282,7 @@ const useGrid = (
     hasNextPage,
     hasPreviousPage,
     getAggregates,
-    paginate,
+    pagesToDisplay,
     getRowValue,
     nextPage,
     previousPage,

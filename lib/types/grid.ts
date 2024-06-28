@@ -6,6 +6,7 @@ export interface GridProps {
   currentPage: number;
   perPage: number;
   totalRows?: number;
+  pageRangeDisplayed: number;
   footer?: boolean;
   loading?: boolean;
   serverSide?: boolean;

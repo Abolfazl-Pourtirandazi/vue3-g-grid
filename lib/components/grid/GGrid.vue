@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   rows: () => [] as object[],
   currentPage: 1,
   perPage: 10,
+  pageRangeDisplayed: 4,
   footer: false,
   loading: false,
   serverSide: false,
@@ -30,7 +31,7 @@ const {
   hasNextPage,
   hasPreviousPage,
   getAggregates,
-  paginate,
+  pagesToDisplay,
   getRowValue,
   nextPage,
   previousPage,
@@ -145,13 +146,13 @@ const {
           </div>
 
           <div class="gg--pages">
-            <template v-for="number in paginate" :key="number">
+            <template v-for="page in pagesToDisplay" :key="page">
               <div
                 class="gg--page gg--button"
-                :class="{ 'gg--active': Number(number) + 1 === currentPage }"
-                @click="handleChangePage(Number(number) + 1)"
+                :class="{ 'gg--active': page === currentPage }"
+                @click="handleChangePage(page)"
               >
-                {{ Number(number) + 1 }}
+                {{ page }}
               </div>
             </template>
           </div>
