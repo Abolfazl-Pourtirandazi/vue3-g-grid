@@ -33,13 +33,12 @@ const {
   getAggregates,
   pagesToDisplay,
   getRowValue,
+  sortColumn,
   nextPage,
   previousPage,
   firstPage,
   lastPage,
   handleChangePage,
-  hasColumnSorted,
-  handleSortData,
   width
 } = useGrid(props);
 </script>
@@ -61,11 +60,8 @@ const {
                     minWidth: width(column) + 'px',
                     maxWidth: width(column) + 'px'
                   }"
-                  @click="handleSortData(column)"
+                  @click="sortColumn(column)"
                 >
-                  <template v-if="hasColumnSorted(column).isValid">
-                    <g-icon class="gg--icon-sort" :icon="hasColumnSorted(column).icon" />
-                  </template>
                   <slot :name="column.columnCell" v-bind="{ column }">
                     {{ column.title }}
                   </slot>

@@ -1,14 +1,7 @@
 import { computed, onUnmounted, ref, toRaw, watch } from "vue";
 import useUtils from "../useUtils";
-import type { SortDirection } from "../../types/utils";
-import type {
-  GridProps,
-  GridColumn,
-  GridAggregates,
-  GridAggregateType,
-  GridSort,
-  ColumnSorted
-} from "../../types/grid";
+import { SortType } from "../../types/grid";
+import type { GridProps, GridColumn, GridAggregates, GridAggregateType, GridSort } from "../../types/grid";
 
 const useGrid = (
   props: GridProps = {
@@ -24,13 +17,13 @@ const useGrid = (
 ) => {
   const { sorting, formatDate, separateNumber, toFixed } = useUtils();
 
-  const sort = ref<string>("");
+  const multiSortColumn = true;
+
+  const currentPage = ref<number>(props.currentPage);
+  const sort = ref<GridSort[]>([]);
 
   /* Element Ref */
   const gGrid = ref<HTMLElement>();
-
-  /* Current Page */
-  const currentPage = ref<number>(props.currentPage);
 
   /* Total Pages */
   const totalPages = computed((): number => Math.ceil(getTotalRows.value / props.perPage));
@@ -76,11 +69,8 @@ const useGrid = (
     const value: object[] = [...toRaw(props.rows)];
 
     //Sorting
-    if (sort.value) {
-      const { field: sortField, direction } = getSort.value;
-
-      //Sorting Value
-      sorting(value, sortField, direction);
+    if (sort.value.length) {
+      sorting(sort.value, value);
     }
 
     //For Server Side
@@ -124,16 +114,6 @@ const useGrid = (
     });
 
     return result;
-  });
-
-  /* Get Sort */
-  const getSort = computed((): GridSort => {
-    const [field, direction] = sort.value.split(",");
-
-    return {
-      field: field,
-      direction: direction as SortDirection
-    };
   });
 
   /* Pages To Display  */
@@ -183,6 +163,32 @@ const useGrid = (
     return value || "-";
   };
 
+  /* Sort Column */
+  const sortColumn = (column: GridColumn) => {
+    if (!column.sortable) return;
+
+    const sortItem: GridSort = {
+      field: column.field,
+      type: SortType.ascending
+    };
+
+    const findSortItem = sort.value.find((item) => item.field === sortItem.field);
+
+    if (findSortItem) {
+      if (findSortItem.type === SortType.ascending) {
+        findSortItem.type = SortType.descending;
+      } else {
+        sort.value = sort.value.filter((item) => item.field !== sortItem.field);
+      }
+    } else {
+      if (multiSortColumn) {
+        sort.value = [...sort.value, sortItem];
+      } else {
+        sort.value = [sortItem];
+      }
+    }
+  };
+
   /* Next Page */
   const nextPage = (): void => {
     if (!hasNextPage.value) return;
@@ -221,42 +227,6 @@ const useGrid = (
     currentPage.value = page;
   };
 
-  /* Has Column Sorted */
-  const hasColumnSorted = (column: GridColumn): ColumnSorted => {
-    const result: ColumnSorted = { isValid: false, icon: "" };
-
-    const { field: sortField, direction } = getSort.value;
-
-    if (column.sortable && sortField === column.field) {
-      result.isValid = true;
-
-      if (direction === "up") {
-        result.icon = "mdi mdi-arrow-up-thin";
-      }
-
-      if (direction === "down") {
-        result.icon = "mdi mdi-arrow-down-thin";
-      }
-    }
-
-    return result;
-  };
-
-  /* Sort Data */
-  const handleSortData = (column: GridColumn): void => {
-    const { field: sortField, direction } = getSort.value;
-
-    if (column.sortable) {
-      if (sortField === column.field && direction === "down") {
-        sort.value = "";
-      } else if (sortField === column.field && direction === "up") {
-        sort.value = column.field + ",down";
-      } else {
-        sort.value = column.field + ",up";
-      }
-    }
-  };
-
   /* Get Width Data */
   const width = (column: GridColumn): string | number => {
     if (column.width) return column.width;
@@ -265,7 +235,7 @@ const useGrid = (
   };
 
   onUnmounted(() => {
-    sort.value = "";
+    sort.value = [];
 
     currentPage.value = props.currentPage;
   });
@@ -284,13 +254,12 @@ const useGrid = (
     getAggregates,
     pagesToDisplay,
     getRowValue,
+    sortColumn,
     nextPage,
     previousPage,
     firstPage,
     lastPage,
     handleChangePage,
-    hasColumnSorted,
-    handleSortData,
     width
   };
 };

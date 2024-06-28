@@ -1,5 +1,6 @@
 import moment from "moment-jalaali";
-import type { SortDirection, SortableItem } from "../../types/utils";
+import { SortType } from "../../types/grid";
+import type { GridSort } from "../../types/grid";
 
 const useUtils = () => {
   /* To Fixed Number */
@@ -32,61 +33,46 @@ const useUtils = () => {
   };
 
   /* Sort */
-  const sorting = (items: SortableItem[], field: string, direction: SortDirection = "up"): void => {
-    items.sort((a, b) => {
-      const aData: any = a[field];
-      const bData: any = b[field];
+  const sorting = (sort: GridSort[], items: object[]): void => {
+    if (!items.length) return;
 
-      //Sort Default
-      if (!aData && !bData) {
-        return 0;
-      }
-
-      //Sort String
-      const sortString = () => {
-        const nameA = aData.toUpperCase();
-        const nameB = bData.toUpperCase();
-
-        //Up Sort
-        if (direction === "down") {
-          if (nameA > nameB) {
-            return -1;
-          }
-
-          if (nameA < nameB) {
-            return 1;
-          }
-        }
-
-        //Down Sort
-        if (nameA < nameB) {
-          return -1;
-        }
-
-        if (nameA > nameB) {
-          return 1;
-        }
-
-        //Default
-        return 0;
-      };
-
-      //Sort Number
-      const sortNumber = () => {
-        //Down Sort
-        if (direction === "down") {
-          return aData - bData;
-        }
-
-        //Up Sort
-        return bData - aData;
-      };
+    const sortField = (sort: GridSort, a: any, b: any): number => {
+      const aData = a[sort.field];
+      const bData = b[sort.field];
 
       if (!isNumeric(aData) && !isNumeric(bData)) {
-        return sortString();
+        return compareAlphanumeric(aData as string, bData as string);
       }
 
-      return sortNumber();
+      return compareNumeric(aData as number, bData as number);
+    };
+
+    const compareAlphanumeric = (a: string, b: string): number => {
+      if (a === b) {
+        return 0;
+      }
+
+      if (a < b) {
+        return -1;
+      }
+
+      return 1;
+    };
+
+    const compareNumeric = (a: number, b: number) => {
+      return a - b;
+    };
+
+    items.sort((a: any, b: any): number => {
+      for (const _sortItem of sort) {
+        const compare = sortField(_sortItem, a, b);
+
+        if (compare !== 0) {
+          return _sortItem.type === SortType.descending ? compare * -1 : compare;
+        }
+      }
+
+      return 0;
     });
   };
 

@@ -1,5 +1,3 @@
-import type { SortDirection } from "./utils";
-
 export interface GridProps {
   columns: GridColumn[];
   rows: object[];
@@ -40,12 +38,12 @@ export interface GridAggregates {
   [key: string]: number;
 }
 
-export interface GridSort {
-  field: string;
-  direction: SortDirection;
+export enum SortType {
+  ascending = 0,
+  descending = 1
 }
 
-export interface ColumnSorted {
-  isValid: boolean;
-  icon: string;
+export interface GridSort {
+  field: string;
+  type: SortType;
 }
