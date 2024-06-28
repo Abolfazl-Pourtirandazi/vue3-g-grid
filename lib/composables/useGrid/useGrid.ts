@@ -62,11 +62,11 @@ const useGrid = (
     return value;
   });
 
-  /* Get Columns */
-  const getColumns = computed(() => props.columns);
+  /* Columns To Display */
+  const columnsToDisplay = computed(() => props.columns);
 
-  /* Get Rows */
-  const getRows = computed((): object[] => {
+  /* Rows To Display */
+  const rowsToDisplay = computed((): object[] => {
     const value: object[] = [...toRaw(props.rows)];
 
     //Sorting
@@ -96,7 +96,7 @@ const useGrid = (
         const key: string = column.field;
         const type: GridAggregateType = column.aggregate;
 
-        getRows.value.forEach((item: any) => {
+        rowsToDisplay.value.forEach((item: any) => {
           if (!result[key]) {
             result[key] = 0;
           }
@@ -105,7 +105,7 @@ const useGrid = (
         });
 
         if (type === "avg") {
-          result[key] = Number(result[key] / getRows.value.length);
+          result[key] = Number(result[key] / rowsToDisplay.value.length);
         }
 
         if (result[key] % 1 != 0) {
@@ -248,8 +248,8 @@ const useGrid = (
     getTotalRows,
     startIndex,
     endIndex,
-    getColumns,
-    getRows,
+    columnsToDisplay,
+    rowsToDisplay,
     hasNextPage,
     hasPreviousPage,
     getAggregates,

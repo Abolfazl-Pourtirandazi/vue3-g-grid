@@ -31,8 +31,8 @@ const {
   getTotalRows,
   startIndex,
   endIndex,
-  getColumns,
-  getRows,
+  columnsToDisplay,
+  rowsToDisplay,
   hasNextPage,
   hasPreviousPage,
   getAggregates,
@@ -57,7 +57,7 @@ const {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <template v-for="(column, index) in getColumns" :key="index">
+              <template v-for="(column, index) in columnsToDisplay" :key="index">
                 <th
                   scope="col"
                   :class="column.columnClassName"
@@ -82,18 +82,18 @@ const {
             </slot>
           </div>
 
-          <template v-if="getRows.length">
+          <template v-if="rowsToDisplay.length">
             <!-- Rows -->
             <tbody>
-              <template v-for="(row, index) in getRows" :key="index">
+              <template v-for="(row, index) in rowsToDisplay" :key="index">
                 <tr
                   :class="{
                     'gg--even': index % 2,
-                    'gg--border-none': getRows.length - 1 === index
+                    'gg--border-none': rowsToDisplay.length - 1 === index
                   }"
                 >
                   <th scope="row">{{ index + 1 + startIndex }}</th>
-                  <template v-for="(column, cIndex) in columns" :key="cIndex">
+                  <template v-for="(column, cIndex) in columnsToDisplay" :key="cIndex">
                     <td
                       :class="column.rowClassName"
                       :style="{
@@ -126,7 +126,7 @@ const {
           </template>
 
           <!-- Empty -->
-          <template v-if="!getRows.length && !loading">
+          <template v-if="!rowsToDisplay.length && !loading">
             <div class="gg--empty">No Data Availaible</div>
           </template>
         </table>
