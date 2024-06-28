@@ -5,6 +5,7 @@ export interface GridProps {
   perPage: number;
   totalRows?: number;
   pageRangeDisplayed: number;
+  sortOptions: SortOptions;
   footer?: boolean;
   loading?: boolean;
   serverSide?: boolean;
@@ -12,6 +13,10 @@ export interface GridProps {
   rtl?: boolean;
   dark?: boolean;
   readData?: null | ((page: number) => void);
+}
+
+export interface SortOptions {
+  multiple: boolean;
 }
 
 export type GridAggregateType = "sum" | "avg";

@@ -2,7 +2,7 @@
 import useGrid from "../../composables/useGrid";
 import GIcon from "../icon/GIcon.vue";
 import GSpinner from "../spinner/GSpinner.vue";
-import type { GridColumn, GridProps } from "../../types/grid";
+import type { GridColumn, GridProps, SortOptions } from "../../types/grid";
 
 defineOptions({ name: "GGrid" });
 
@@ -12,6 +12,11 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
   currentPage: 1,
   perPage: 10,
   pageRangeDisplayed: 4,
+  sortOptions: (): SortOptions => {
+    return {
+      multiple: false
+    };
+  },
   footer: false,
   loading: false,
   serverSide: false,

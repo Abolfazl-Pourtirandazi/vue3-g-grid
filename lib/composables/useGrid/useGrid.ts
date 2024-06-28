@@ -10,14 +10,15 @@ const useGrid = (
     currentPage: 1,
     perPage: 10,
     pageRangeDisplayed: 4,
+    sortOptions: {
+      multiple: false
+    },
     footer: false,
     loading: false,
     serverSide: false
   }
 ) => {
   const { sorting, formatDate, separateNumber, toFixed } = useUtils();
-
-  const multiSortColumn = true;
 
   const currentPage = ref<number>(props.currentPage);
   const sort = ref<GridSort[]>([]);
@@ -181,7 +182,7 @@ const useGrid = (
         sort.value = sort.value.filter((item) => item.field !== sortItem.field);
       }
     } else {
-      if (multiSortColumn) {
+      if (props.sortOptions?.multiple) {
         sort.value = [...sort.value, sortItem];
       } else {
         sort.value = [sortItem];
