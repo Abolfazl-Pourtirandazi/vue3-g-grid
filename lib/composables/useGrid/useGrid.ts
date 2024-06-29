@@ -165,7 +165,7 @@ const useGrid = (
   };
 
   /* Sort Column */
-  const sortColumn = (column: GridColumn) => {
+  const sortColumn = (column: GridColumn): void => {
     if (!column.sortable) return;
 
     const sortItem: GridSort = {
@@ -205,12 +205,12 @@ const useGrid = (
   };
 
   /* First Page */
-  const firstPage = () => {
+  const firstPage = (): void => {
     handleChangePage(1);
   };
 
   /* Last Page */
-  const lastPage = () => {
+  const lastPage = (): void => {
     handleChangePage(totalPages.value);
   };
 

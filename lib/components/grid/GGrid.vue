@@ -3,6 +3,7 @@ import useGrid from "../../composables/useGrid";
 import GIcon from "../icon/GIcon.vue";
 import GSpinner from "../spinner/GSpinner.vue";
 import type { GridColumn, GridProps, SortOptions } from "../../types/grid";
+import Column from "./Column.vue";
 
 defineOptions({ name: "GGrid" });
 
@@ -58,19 +59,11 @@ const {
             <tr>
               <th scope="col">#</th>
               <template v-for="(column, index) in columnsToDisplay" :key="index">
-                <th
-                  scope="col"
-                  :class="column.columnClassName"
-                  :style="{
-                    minWidth: width(column) + 'px',
-                    maxWidth: width(column) + 'px'
-                  }"
-                  @click="sortColumn(column)"
-                >
-                  <slot :name="column.columnCell" v-bind="{ column }">
-                    {{ column.title }}
-                  </slot>
-                </th>
+                <Column :column="column" @column:sort="sortColumn">
+                  <template #[`${column.columnCell}`]>
+                    <slot :name="column.columnCell" v-bind="{ column }"> </slot>
+                  </template>
+                </Column>
               </template>
             </tr>
           </thead>
