@@ -38,7 +38,7 @@ const props = defineProps({
     required: true
   },
   sort: {
-    type: [] as PropType<GridSort[]>,
+    type: Array as PropType<GridSort[]>,
     required: true
   }
 });
