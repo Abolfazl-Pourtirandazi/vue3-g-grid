@@ -91,8 +91,8 @@ const {
                     <td
                       :class="column.rowClassName"
                       :style="{
-                        minWidth: width(column) + 'px',
-                        maxWidth: width(column) + 'px'
+                        minWidth: width(column),
+                        maxWidth: width(column)
                       }"
                     >
                       <slot :name="column.rowCell" v-bind="{ row, column }">
@@ -109,7 +109,13 @@ const {
               <tr>
                 <th scope="row" colspan="1"></th>
                 <template v-for="(column, cIndex) in columns" :key="cIndex">
-                  <th colspan="1" :style="{ minWidth: width(column) + 'px' }">
+                  <th
+                    colspan="1"
+                    :style="{
+                      minWidth: width(column),
+                      maxWidth: width(column)
+                    }"
+                  >
                     <slot :name="column.footerCell" v-bind="{ column, aggregates: getAggregates }">
                       {{ column.footer }}
                     </slot>

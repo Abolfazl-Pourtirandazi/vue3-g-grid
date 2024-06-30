@@ -3,8 +3,8 @@
     scope="col"
     :class="column.columnClassName"
     :style="{
-      minWidth: column.width + 'px',
-      maxWidth: column.width + 'px'
+      minWidth: column.width,
+      maxWidth: column.width
     }"
     @click="sortColumn"
   >

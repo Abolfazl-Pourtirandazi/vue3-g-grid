@@ -27,7 +27,7 @@ export interface GridColumn {
   title: string;
   field: string;
   sortable?: boolean;
-  width?: string | number;
+  width?: string;
   aggregate?: GridAggregateType;
   type?: GridType;
   format?: string;

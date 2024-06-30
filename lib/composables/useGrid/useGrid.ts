@@ -229,7 +229,7 @@ const useGrid = (
   };
 
   /* Get Width Data */
-  const width = (column: GridColumn): string | number => {
+  const width = (column: GridColumn): string => {
     if (column.width) return column.width;
 
     return "";

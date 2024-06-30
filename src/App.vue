@@ -11,7 +11,7 @@ const columns = [
     field: "permission",
     columnClassName: "class1",
     rowClassName: "class2",
-    width: 50
+    width: "50px"
   },
   {
     title: "age",
