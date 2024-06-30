@@ -52,3 +52,8 @@ export interface GridSort {
   field: string;
   type: SortType;
 }
+
+export interface SortInfo {
+  icon: string;
+  priority?: number | string;
+}

@@ -31,11 +31,26 @@
             th {
               position: relative;
 
-              .gg--icon-sort {
-                position: absolute;
-                top: 13px;
-                left: 0;
-                color: rgb(var(--ggrid-sort-icon-color));
+              .gg--column {
+                display: flex;
+
+                .gg--sort-info {
+                  display: flex;
+                  align-items: center;
+                  color: rgb(var(--ggrid-sort-icon-color));
+
+                  .gg--sort-icon {
+                    color: rgb(var(--ggrid-sort-icon-color));
+
+                    &::before {
+                      font-weight: bold;
+                    }
+                  }
+
+                  .gg--sort-priority {
+                    color: rgb(var(--ggrid-sort-icon-color));
+                  }
+                }
               }
             }
           }
@@ -188,21 +203,6 @@
       .gg--pagination {
         @media screen and (min-width: 658px) {
           flex-direction: row-reverse !important;
-        }
-      }
-
-      .gg--table-responsive {
-        table {
-          thead {
-            tr {
-              th {
-                .gg--icon-sort {
-                  left: unset;
-                  right: 0;
-                }
-              }
-            }
-          }
         }
       }
     }

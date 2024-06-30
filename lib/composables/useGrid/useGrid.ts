@@ -243,6 +243,7 @@ const useGrid = (
 
   return {
     gGrid,
+    sort,
     currentPage,
     totalPages,
     getTotalRows,

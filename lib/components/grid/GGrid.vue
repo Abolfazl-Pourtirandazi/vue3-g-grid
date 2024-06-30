@@ -28,6 +28,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
 
 const {
   gGrid,
+  sort,
   currentPage,
   getTotalRows,
   startIndex,
@@ -59,7 +60,7 @@ const {
             <tr>
               <th scope="col">#</th>
               <template v-for="(column, index) in columnsToDisplay" :key="index">
-                <Column :column="column" @column:sort="sortColumn">
+                <Column :column="column" :sort="sort" @column:sort="sortColumn">
                   <template #[`${column.columnCell}`]>
                     <slot :name="column.columnCell" v-bind="{ column }"> </slot>
                   </template>
