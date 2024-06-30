@@ -1,7 +1,7 @@
 <template>
   <th
     scope="col"
-    :class="column.columnClassName"
+    :class="[column.columnClassName, { sortable: hasSortable }]"
     :style="{
       minWidth: column.width,
       maxWidth: column.width
@@ -66,8 +66,13 @@ const sortInfo = computed((): SortInfo => {
   return data;
 });
 
+/* Has Sortable Column */
+const hasSortable = computed((): boolean => props.column.sortable ?? false);
+
 /* Sort Column */
 const sortColumn = (): void => {
+  if (!hasSortable.value) return;
+
   emit("column:sort", props.column);
 };
 </script>

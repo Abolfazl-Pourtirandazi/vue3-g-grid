@@ -26,6 +26,10 @@
               font-size: var(--ggrid-column-font-size);
               font-weight: var(--ggrid-column-font-weight);
               text-align: inherit;
+
+              &.sortable {
+                cursor: pointer;
+              }
             }
 
             th {
