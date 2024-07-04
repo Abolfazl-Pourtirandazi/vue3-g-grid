@@ -59,7 +59,7 @@ const {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <template v-for="(column, index) in columnsToDisplay" :key="index">
+              <template v-for="column in columnsToDisplay" :key="column.field">
                 <Column :column="column" :sort="sort" @column:sort="sortColumn">
                   <template #[`${column.columnCell}`]>
                     <slot :name="column.columnCell" v-bind="{ column }"> </slot>
@@ -87,7 +87,7 @@ const {
                   }"
                 >
                   <th scope="row">{{ index + 1 + startIndex }}</th>
-                  <template v-for="(column, cIndex) in columnsToDisplay" :key="cIndex">
+                  <template v-for="column in columnsToDisplay" :key="column.field">
                     <td
                       :class="column.rowClassName"
                       :style="{
@@ -108,7 +108,7 @@ const {
             <tfoot v-if="footer">
               <tr>
                 <th scope="row" colspan="1"></th>
-                <template v-for="(column, cIndex) in columns" :key="cIndex">
+                <template v-for="column in columnsToDisplay" :key="column.field">
                   <th
                     colspan="1"
                     :style="{
