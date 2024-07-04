@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, computed } from "vue";
+import { type PropType, computed } from "vue";
 import type { GridColumn, GridSort, SortInfo } from "../../types/grid";
 import GIcon from "../icon/GIcon.vue";
 
