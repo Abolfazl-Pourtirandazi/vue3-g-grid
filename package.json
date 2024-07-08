@@ -3,18 +3,42 @@
   "version": "0.10.0-alpha",
   "type": "module",
   "private": false,
-  "description": "g-grid Vue Component Leverages a flat html structure and CSS grid to allow full layout control.",
+  "description": "GGrid Component (vue3)",
   "license": "MIT",
+  "main": "./dist/g-grid.umd.cjs",
+  "module": "./dist/g-grid.js",
+  "types": "./dist/types/main.d.ts",
+  "homepage": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid",
+  "bugs": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid/issues",
   "author": {
     "name": "Abolfazl Portirandazi",
     "email": "abolfazl.portirandazi@gmail.com"
   },
-  "homepage": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Abolfazl-Portirandazi/vue3-g-grid.git"
   },
-  "bugs": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid/issues",
+  "exports": {
+    ".": {
+      "types": "./dist/types/main.d.ts",
+      "import": "./dist/g-grid.js",
+      "require": "./dist/g-grid.umd.cjs"
+    },
+    "./styles.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css",
+      "style": "./dist/style.css"
+    }
+  },
+  "browser": {
+    "./styles.css": "./dist/style.css"
+  },
+  "files": [
+    "dist/*",
+    "lib/**/*",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "ggrid",
     "g grid",
@@ -22,35 +46,56 @@
     "grid",
     "table",
     "vuejs",
+    "vue js",
     "vue",
-    "vue3"
+    "vue3",
+    "vue 3"
   ],
   "engines": {
     "node": ">=18"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "npm run type:check && build:only && npm run build:types",
+    "build:only": "vite build",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
+    "type:check": "vue-tsc --noEmit",
+    "preview": "vite preview",
+    "format:check": "prettier --check \"./**/*.{ts,js,json,vue,css}\"",
+    "format:fix": "prettier --write \"./**/*.{ts,js,json,vue,css}\"",
+    "lint": "eslint -c .eslintrc.cjs --ignore-path .gitignore \"./**/*.{ts,js}\"",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "dependencies": {
-    "moment-jalaali": "^0.10.1",
-    "vue": "^3.4.21"
+    "moment-jalaali": "^0.10.1"
   },
   "devDependencies": {
+    "@babel/types": "^7.24.7",
     "@mdi/font": "^7.4.47",
     "@rushstack/eslint-patch": "^1.10.3",
+    "@tsconfig/node18": "^18.2.4",
     "@types/moment-jalaali": "^0.7.9",
+    "@types/node": "^20.14.9",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
     "prettier": "^3.3.2",
+    "rollup-plugin-delete": "^2.0.0",
     "sass": "^1.77.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-eslint": "^1.8.1",
+    "vue": "^3.4.31",
     "vue-tsc": "^2.0.6"
   }
 }
