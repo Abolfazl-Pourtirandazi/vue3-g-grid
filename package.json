@@ -60,7 +60,7 @@
     "not dead"
   ],
   "scripts": {
-    "build": "npm run type:check && build:only && npm run build:types",
+    "build": "npm run type:check && npm run build:only && npm run build:types",
     "build:only": "vite build",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly",
     "type:check": "vue-tsc --noEmit",
