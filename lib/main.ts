@@ -10,6 +10,7 @@ import type {
   SortOptions,
   SortType
 } from "./types/grid";
+import "./assets/scss/style.scss";
 
 export type {
   GGridOptions,
