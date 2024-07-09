@@ -11,7 +11,3 @@ withDefaults(defineProps<IconProps>(), {
   rotation: 0
 });
 </script>
-
-<style lang="scss" scoped>
-@import "./gIcon.scss";
-</style>

@@ -5,7 +5,3 @@
 <script lang="ts" setup>
 defineOptions({ name: "GSpinner" });
 </script>
-
-<style lang="scss">
-@import "./gSpinner.scss";
-</style>

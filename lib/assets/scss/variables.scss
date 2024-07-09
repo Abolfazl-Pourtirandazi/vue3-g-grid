@@ -1,0 +1,108 @@
+:root {
+  --ggrid-background-color: 255, 255, 255; //#fff
+  --ggrid-foreground-color: 33, 33, 33; //#212121
+  --ggrid-active-color: 242, 242, 242; //#f9fafb
+  --ggrid-overlay-color: 249, 250, 251; //#f9fafb
+
+  --ggrid-icon-color: 89, 86, 98; //#6D6A76
+  --ggrid-loading-color: 10, 184, 210; //#0ab8d2
+  --ggrid-sort-icon-color: 10, 184, 210; //#0ab8d2
+
+  --ggrid-font-size: 14px;
+  --ggrid-icon-size: 18px;
+  --ggrid-loading-size: 25px;
+
+  /* Column */
+  --ggrid-column-background-color: 255, 255, 255; //#fff
+  --ggrid-column-foreground-color: 110, 107, 123; //#6e6b7b
+
+  --ggrid-column-horizontal-padding: 20px;
+  --ggrid-column-vertical-padding: 17px;
+
+  --ggrid-column-font-size: inherit;
+  --ggrid-column-font-weight: bold;
+
+  --ggrid-column-border-width: 1px;
+  --ggrid-column-border-style: solid;
+  --ggrid-column-border-color: 243, 243, 243; //f3f3f3
+
+  /* Row */
+  --ggrid-row-background-color: 255, 255, 255; //#fff
+  --ggrid-row-foreground-color: 33, 33, 33; //#212121
+
+  --ggrid-row-horizontal-padding: 20px;
+  --ggrid-row-vertical-padding: 12px;
+
+  --ggrid-row-font-size: inherit;
+  --ggrid-row-font-weight: 500;
+
+  --ggrid-row-border-color: 243, 243, 243; //f3f3f3
+  --ggrid-row-border-style: solid;
+  --ggrid-row-border-width: 1px;
+
+  /* Footer */
+  --ggrid-footer-background-color: 245, 247, 250; //#F5F7FA
+  --ggrid-footer-foreground-color: 33, 33, 33; //#212121
+
+  --ggrid-footer-horizontal-padding: 20px;
+  --ggrid-footer-vertical-padding: 10px;
+
+  --ggrid-footer-font-size: inherit;
+  --ggrid-footer-font-weight: bold;
+
+  /* Pagination */
+  --ggrid-pagination-btn-background-color: 245, 247, 250; //#F5F7FA
+  --ggrid-pagination-btn-foreground-color: 33, 33, 33; //#212121
+  --ggrid-pagination-btn-active-background-color: 10, 184, 210; //#0ab8d2
+  --ggrid-pagination-btn-active-foreground-color: 255, 255, 255; //#fff
+  --ggrid-pagination-icon-color: 89, 86, 98; //#6D6A76
+
+  --ggrid-pagination-horizontal-padding: 15px;
+  --ggrid-pagination-vertical-padding: 15px;
+
+  --ggrid-pagination-border-color: 243, 243, 243; //f3f3f3
+  --ggrid-pagination-border-style: solid;
+  --ggrid-pagination-border-width: 1px;
+
+  /* Empty */
+  --ggrid-empty-color: 33, 33, 33; //#212121
+
+  --ggrid-empty-font-size: inherit;
+  --ggrid-empty-font-weight: 600;
+}
+
+.dark {
+  --ggrid-background-color: 33, 33, 33; //#212121
+  --ggrid-foreground-color: 202, 202, 202; //#cacaca
+  --ggrid-active-color: 50, 53, 60; //#32353c
+  --ggrid-overlay-color: 249, 250, 251; //#f9fafb
+
+  --ggrid-loading-color: 10, 184, 210; //#0ab8d2
+  --ggrid-icon-color: 152, 152, 152; //#989898
+  --ggrid-sort-icon-color: 10, 184, 210; //#0ab8d2
+
+  /* Column */
+  --ggrid-column-background-color: 33, 33, 33; //#212121
+  --ggrid-column-foreground-color: 180, 183, 189; //#b4b7bd
+  --ggrid-column-border-color: 62, 62, 62; //#3e3e3e
+
+  /* Row */
+  --ggrid-row-background-color: 33, 33, 33; //#212121
+  --ggrid-row-foreground-color: 202, 202, 202; //#cacaca
+  --ggrid-row-border-color: 62, 62, 62; //#3e3e3e
+
+  /* Footer */
+  --ggrid-footer-background-color: 245, 247, 250; //#F5F7FA
+  --ggrid-footer-foreground-color: 202, 202, 202; //#cacaca
+
+  /* Pagination */
+  --ggrid-pagination-btn-background-color: 44, 44, 44; //#2C2C2C
+  --ggrid-pagination-btn-foreground-color: 202, 202, 202; //#cacaca
+  --ggrid-pagination-btn-active-background-color: 10, 184, 210; //#0ab8d2
+  --ggrid-pagination-btn-active-foreground-color: 255, 255, 255; //#fff
+  --ggrid-pagination-icon-color: 152, 152, 152; //#989898
+  --ggrid-pagination-border-color: 62, 62, 62; //#3e3e3e
+
+  /* Empty */
+  --ggrid-empty-color: 202, 202, 202; //#cacaca
+}

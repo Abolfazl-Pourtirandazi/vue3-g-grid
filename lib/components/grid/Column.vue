@@ -76,7 +76,3 @@ const sortColumn = (): void => {
   emit("column:sort", props.column);
 };
 </script>
-
-<style lang="scss" scoped>
-@import "./gGrid.scss";
-</style>
