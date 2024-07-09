@@ -78,7 +78,6 @@
   },
   "devDependencies": {
     "@babel/types": "^7.24.7",
-    "@mdi/font": "^7.4.47",
     "@rushstack/eslint-patch": "^1.10.3",
     "@tsconfig/node18": "^18.2.4",
     "@types/moment-jalaali": "^0.7.9",

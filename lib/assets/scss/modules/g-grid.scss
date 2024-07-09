@@ -37,6 +37,9 @@
 
               .gg--column {
                 display: flex;
+                align-items: center;
+                min-width: 80px;
+                min-height: 20px;
 
                 .gg--sort-info {
                   display: flex;

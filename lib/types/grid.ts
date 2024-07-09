@@ -1,3 +1,5 @@
+import type { Icons } from "./icon";
+
 export interface GridProps {
   columns: GridColumn[];
   rows: object[];
@@ -54,6 +56,6 @@ export interface GridSort {
 }
 
 export interface SortInfo {
-  icon: string;
+  icon: Icons;
   priority?: number | string;
 }

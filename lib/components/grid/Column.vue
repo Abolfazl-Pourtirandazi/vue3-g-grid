@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import { type PropType, computed } from "vue";
 import type { GridColumn, GridSort, SortInfo } from "../../types/grid";
-import GIcon from "../icon/GIcon.vue";
+import GIcon from "../icons/GIcon.vue";
 
 const emit = defineEmits(["column:sort"]);
 
@@ -53,10 +53,10 @@ const currentSort = computed((): GridSort | undefined => {
 
 /* Sort Info */
 const sortInfo = computed((): SortInfo => {
-  const data: SortInfo = { icon: "mdi mdi-arrow-up-thin", priority: "" };
+  const data: SortInfo = { icon: "arrow-up-thin", priority: "" };
 
   if (currentSort.value?.type === 1) {
-    data.icon = "mdi mdi-arrow-down-thin";
+    data.icon = "arrow-down-thin";
   }
 
   if (props.sort.length > 1) {
