@@ -132,7 +132,7 @@ const useGrid = (
     let value = row[column.field];
 
     //For Nested Object
-    if (column.field.includes(".")) {
+    if (column.field && column.field.includes(".")) {
       const parts = column.field.split(".");
 
       let currentObject = row;
