@@ -8,15 +8,15 @@
   "main": "./dist/g-grid.umd.cjs",
   "module": "./dist/g-grid.js",
   "types": "./dist/types/main.d.ts",
-  "homepage": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid",
-  "bugs": "https://github.com/Abolfazl-Portirandazi/vue3-g-grid/issues",
+  "homepage": "https://github.com/Abolfazl-Pourtirandazi/vue3-g-grid",
+  "bugs": "https://github.com/Abolfazl-Pourtirandazi/vue3-g-grid/issues",
   "author": {
-    "name": "Abolfazl Portirandazi",
-    "email": "abolfazl.portirandazi@gmail.com"
+    "name": "Abolfazl Pourtirandazi",
+    "email": "abolfazl.pourtirandazi@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Abolfazl-Portirandazi/vue3-g-grid.git"
+    "url": "git+https://github.com/Abolfazl-Pourtirandazi/vue3-g-grid.git"
   },
   "exports": {
     ".": {
