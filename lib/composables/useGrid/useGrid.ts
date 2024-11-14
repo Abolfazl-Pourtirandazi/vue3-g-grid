@@ -63,7 +63,7 @@ const useGrid = (
   });
 
   /* Columns To Display */
-  const columnsToDisplay = computed((): GridColumn[] => props.columns);
+  const columnsToDisplay = computed((): GridColumn[] => props.columns.filter((column): boolean => !column.hide));
 
   /* Rows To Display */
   const rowsToDisplay = computed((): object[] => {

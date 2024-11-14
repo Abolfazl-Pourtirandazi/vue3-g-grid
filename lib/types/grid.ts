@@ -39,6 +39,7 @@ export interface GridColumn {
   footer?: string | number;
   columnClassName?: string;
   rowClassName?: string;
+  hide?: boolean;
 }
 
 export interface GridAggregates {
