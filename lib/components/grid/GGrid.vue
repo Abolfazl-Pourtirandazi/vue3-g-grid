@@ -127,7 +127,9 @@ const {
 
           <!-- Empty -->
           <template v-if="!rowsToDisplay.length && !loading">
-            <div class="gg--empty">No Data Availaible</div>
+            <div class="gg--empty">
+              <slot name="no-data"> No Data Availaible </slot>
+            </div>
           </template>
         </table>
       </div>
