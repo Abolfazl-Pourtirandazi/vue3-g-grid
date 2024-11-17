@@ -52,13 +52,13 @@ const {
 
 <template>
   <div class="g-grid" :class="{ rtl: rtl, dark: dark }">
-    <div ref="gGrid" class="gg--content">
+    <div ref="gGrid" class="gg--container">
       <div class="gg--table-responsive" :style="{ minHeight: height + 'px' }">
-        <table>
-          <!-- Columns -->
-          <thead>
-            <tr>
-              <th scope="col">#</th>
+        <table class="gg--table-wrapper" role="table">
+          <!-- Header -->
+          <thead class="gg--thead" role="rowgroup">
+            <tr class="gg--header-row" role="row">
+              <th class="gg--header-cell" scope="col" role="columnheader">#</th>
               <template v-for="column in columnsToDisplay" :key="column.field">
                 <Column :column="column" :sort="sort" @column:sort="sortColumn">
                   <template #[`${column.columnCell}`]>
@@ -76,20 +76,26 @@ const {
             </slot>
           </div>
 
+          <!-- Body -->
           <template v-if="rowsToDisplay.length">
-            <!-- Rows -->
-            <tbody>
+            <tbody class="gg--tbody" role="rowgroup">
               <template v-for="(row, index) in rowsToDisplay" :key="index">
                 <tr
-                  :class="{
-                    'gg--even': index % 2,
-                    'gg--border-none': rowsToDisplay.length - 1 === index
-                  }"
+                  class="gg--row"
+                  :class="[
+                    index % 2 ? 'gg--row-even' : 'gg--row-odd',
+                    {
+                      'gg--border-none': rowsToDisplay.length - 1 === index
+                    }
+                  ]"
+                  role="row"
                 >
-                  <th scope="row">{{ index + 1 + startIndex }}</th>
+                  <td class="gg--row-cell" role="cell">{{ index + 1 + startIndex }}</td>
                   <template v-for="column in columnsToDisplay" :key="column.field">
                     <td
+                      class="gg--row-cell"
                       :class="column.rowClassName"
+                      role="cell"
                       :style="{
                         minWidth: width(column),
                         maxWidth: width(column)
@@ -105,24 +111,28 @@ const {
             </tbody>
 
             <!-- Footer -->
-            <tfoot v-if="footer">
-              <tr>
-                <th scope="row" colspan="1"></th>
-                <template v-for="column in columnsToDisplay" :key="column.field">
-                  <th
-                    colspan="1"
-                    :style="{
-                      minWidth: width(column),
-                      maxWidth: width(column)
-                    }"
-                  >
-                    <slot :name="column.footerCell" v-bind="{ column, aggregates: getAggregates }">
-                      {{ column.footer }}
-                    </slot>
-                  </th>
-                </template>
-              </tr>
-            </tfoot>
+            <template v-if="footer">
+              <tfoot class="gg--tfoot" role="rowgroup">
+                <tr class="gg--footer-row" role="row">
+                  <td class="gg--footer-cell" colspan="1" role="cell"></td>
+                  <template v-for="column in columnsToDisplay" :key="column.field">
+                    <td
+                      class="gg--footer-cell"
+                      colspan="1"
+                      :style="{
+                        minWidth: width(column),
+                        maxWidth: width(column)
+                      }"
+                      role="cell"
+                    >
+                      <slot :name="column.footerCell" v-bind="{ column, aggregates: getAggregates }">
+                        {{ column.footer }}
+                      </slot>
+                    </td>
+                  </template>
+                </tr>
+              </tfoot>
+            </template>
           </template>
 
           <!-- Empty -->

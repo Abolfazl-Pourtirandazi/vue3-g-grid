@@ -1,15 +1,17 @@
 <template>
   <th
-    scope="col"
+    class="gg--header-cell"
     :class="[column.columnClassName, { sortable: hasSortable }]"
     :style="{
       minWidth: column.width,
       maxWidth: column.width
     }"
+    scope="col"
+    role="columnheader"
     @click="sortColumn"
   >
-    <div class="gg--column">
-      <span class="gg--column-title">
+    <div class="gg--header-content">
+      <span class="gg--header-label">
         <slot :name="column.columnCell" v-bind="{ column }">
           {{ column.title }}
         </slot>
