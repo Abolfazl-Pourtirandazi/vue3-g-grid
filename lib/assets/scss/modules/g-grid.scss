@@ -15,16 +15,16 @@
 
         .gg--thead {
           .gg--header-row {
-            background-color: rgb(var(--ggrid-column-background-color));
-            border-bottom: var(--ggrid-column-border-width) var(--ggrid-column-border-style)
-              rgb(var(--ggrid-column-border-color));
+            background-color: rgb(var(--ggrid-header-background-color));
+            border-bottom: var(--ggrid-header-border-width) var(--ggrid-header-border-style)
+              rgb(var(--ggrid-header-border-color));
 
             .gg--header-cell {
               position: relative;
-              color: rgb(var(--ggrid-column-foreground-color));
-              padding: var(--ggrid-column-vertical-padding) var(--ggrid-column-horizontal-padding);
-              font-size: var(--ggrid-column-font-size);
-              font-weight: var(--ggrid-column-font-weight);
+              color: rgb(var(--ggrid-header-foreground-color));
+              padding: var(--ggrid-header-vertical-padding) var(--ggrid-header-horizontal-padding);
+              font-size: var(--ggrid-header-font-size);
+              font-weight: var(--ggrid-header-font-weight);
               text-align: inherit;
 
               &.sortable {
@@ -66,7 +66,7 @@
               rgb(var(--ggrid-row-border-color));
 
             &.gg--row-even {
-              background-color: rgb(var(--ggrid-active-color));
+              background-color: rgb(var(--ggrid-row-even-backgroud-color));
             }
 
             &.gg--border-none {

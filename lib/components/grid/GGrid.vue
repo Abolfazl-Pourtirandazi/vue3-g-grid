@@ -55,7 +55,7 @@ const {
     <div ref="gGrid" class="gg--container">
       <div class="gg--table-responsive" :style="{ minHeight: height + 'px' }">
         <table class="gg--table-wrapper" role="table">
-          <!-- Header -->
+          <!-- Header Row -->
           <thead class="gg--thead" role="rowgroup">
             <tr class="gg--header-row" role="row">
               <th class="gg--header-cell" scope="col" role="columnheader">#</th>
@@ -110,7 +110,7 @@ const {
               </template>
             </tbody>
 
-            <!-- Footer -->
+            <!-- Footer Row -->
             <template v-if="footer">
               <tfoot class="gg--tfoot" role="rowgroup">
                 <tr class="gg--footer-row" role="row">
