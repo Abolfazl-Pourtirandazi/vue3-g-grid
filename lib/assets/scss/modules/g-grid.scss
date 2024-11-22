@@ -26,6 +26,12 @@
               font-size: var(--ggrid-header-font-size);
               font-weight: var(--ggrid-header-font-weight);
               text-align: inherit;
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -khtml-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
 
               &.sortable {
                 cursor: pointer;
@@ -177,6 +183,12 @@
             justify-content: center;
             min-width: 35px;
             color: rgb(var(--ggrid-pagination-btn-foreground-color));
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
             &.gg--active {
               background-color: rgb(var(--ggrid-pagination-btn-active-background-color));
