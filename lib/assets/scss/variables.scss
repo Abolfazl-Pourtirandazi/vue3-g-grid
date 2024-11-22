@@ -27,7 +27,8 @@
 
   /* Row */
   --ggrid-row-background-color: 255, 255, 255; //#fff
-  --ggrid-row-even-backgroud-color: 242, 242, 242; //#f9fafb
+  --ggrid-row-even-backgroud-color: 246, 246, 246; //#f6f6f6
+  --ggrid-row-hover-backgroud-color: 240, 240, 240; //#f0f0f0
   --ggrid-row-foreground-color: 33, 33, 33; //#212121
 
   --ggrid-row-horizontal-padding: 10px;
@@ -72,27 +73,29 @@
 }
 
 .dark {
-  --ggrid-background-color: 33, 33, 33; //#212121
+  --ggrid-background-color: 26, 26, 26; //#1a1a1a
   --ggrid-foreground-color: 202, 202, 202; //#cacaca
 
   --ggrid-icon-color: 152, 152, 152; //#989898
 
   /* Header */
-  --ggrid-header-background-color: 33, 33, 33; //#212121
+  --ggrid-header-background-color: 26, 26, 26; //#1a1a1a
   --ggrid-header-foreground-color: 180, 183, 189; //#b4b7bd
   --ggrid-header-border-color: 62, 62, 62; //#3e3e3e
 
   /* Row */
-  --ggrid-row-background-color: 33, 33, 33; //#212121
-  --ggrid-row-even-backgroud-color: 50, 53, 60; //#32353c
+  --ggrid-row-background-color: 26, 26, 26; //#1a1a1a
+  --ggrid-row-even-backgroud-color: 33, 33, 33; //#212121
+  --ggrid-row-hover-backgroud-color: 40, 40, 40; //#282828
   --ggrid-row-foreground-color: 202, 202, 202; //#cacaca
   --ggrid-row-border-color: 62, 62, 62; //#3e3e3e
 
   /* Footer */
+  --ggrid-footer-background-color: 33, 33, 33; //#212121
   --ggrid-footer-foreground-color: 202, 202, 202; //#cacaca
 
   /* Pagination */
-  --ggrid-pagination-btn-background-color: 44, 44, 44; //#2C2C2C
+  --ggrid-pagination-btn-background-color: 33, 33, 33; //#212121
   --ggrid-pagination-btn-foreground-color: 202, 202, 202; //#cacaca
   --ggrid-pagination-icon-color: 152, 152, 152; //#989898
   --ggrid-pagination-border-color: 62, 62, 62; //#3e3e3e

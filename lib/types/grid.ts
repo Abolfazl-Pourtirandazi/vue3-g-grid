@@ -9,6 +9,7 @@ export interface GridProps {
   pageRangeDisplayed: number;
   sortOptions: SortOptions;
   striped?: boolean;
+  hover?: boolean;
   footer?: boolean;
   loading?: boolean;
   serverSide?: boolean;

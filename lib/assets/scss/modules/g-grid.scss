@@ -75,6 +75,12 @@
               background-color: rgb(var(--ggrid-row-even-backgroud-color));
             }
 
+            &:hover {
+              &.gg-row-hover {
+                background-color: rgb(var(--ggrid-row-hover-backgroud-color));
+              }
+            }
+
             &.gg--border-none {
               border: unset !important;
             }
@@ -114,8 +120,8 @@
         right: 0;
         left: 0;
         margin: auto;
-        background-color: rgba(var(--ggrid-overlay-color), 0.3);
-        padding-bottom: 0.9rem;
+        background-color: rgba(var(--ggrid-overlay-color), 0.25);
+        padding-top: 40px;
       }
 
       .gg--empty {
@@ -123,7 +129,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 50%;
+        top: 0;
         bottom: 0;
         right: 0;
         left: 0;
@@ -131,6 +137,7 @@
         margin: auto;
         font-size: var(--ggrid-empty-font-size);
         font-weight: rgb(var(--ggrid-empty-font-weight));
+        padding-top: 40px;
       }
     }
 
@@ -154,7 +161,10 @@
       .gg--description {
         width: 100%;
         text-align: left;
-        margin: 5px 0 20px 0;
+
+        @media screen and (max-width: 658px) {
+          margin: 5px 0 20px 0;
+        }
       }
 
       .gg--button-groups {

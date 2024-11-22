@@ -19,6 +19,7 @@ const props = withDefaults(defineProps<Partial<GridProps>>(), {
     };
   },
   striped: true,
+  hover: true,
   footer: false,
   loading: false,
   serverSide: false,
@@ -86,6 +87,7 @@ const {
                   :class="[
                     striped && (index % 2 ? 'gg--row-even' : 'gg--row-odd'),
                     {
+                      'gg-row-hover': hover,
                       'gg--border-none': rowsToDisplay.length - 1 === index
                     }
                   ]"
