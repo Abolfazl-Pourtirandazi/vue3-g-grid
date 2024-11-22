@@ -146,16 +146,30 @@
       }
 
       .gg--description {
-        display: none;
+        width: 100%;
+        text-align: left;
+        margin: 5px 0 20px 0;
       }
 
       .gg--button-groups {
         display: flex;
         gap: 7px;
+        width: 100%;
+
+        @media screen and (max-width: 658px) {
+          justify-content: center;
+        }
 
         .gg--pages {
           display: flex;
           gap: 7px;
+          overflow-x: auto;
+          scrollbar-width: none !important;
+
+          &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+          }
 
           .gg--page {
             display: flex;
@@ -190,6 +204,16 @@
 
             .g-icon {
               opacity: 0.5;
+            }
+          }
+
+          @media screen and (max-width: 405px) {
+            &.gg--first-page {
+              display: none;
+            }
+
+            &.gg--last-page {
+              display: none;
             }
           }
         }

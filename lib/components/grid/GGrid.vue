@@ -146,7 +146,7 @@ const {
 
       <!-- Pagination -->
       <div class="gg--pagination">
-        <div class="gg-description">
+        <div class="gg--description">
           Showing {{ endIndex >= 1 ? startIndex + 1 : 0 }} to {{ endIndex }} of {{ getTotalRows }} entries
         </div>
 
